@@ -1,6 +1,7 @@
 require('dotenv').config(); // Cargar las variables de entorno primero
 const express = require('express');
 const config = require('./Config/config.js'); // Asegúrate de que la ruta es correcta
+//const axios = require("axios"); //
 
 const app = express();
 const sequelize = require('./Config/database');
@@ -31,4 +32,14 @@ console.log(`Puerto configurado: ${config.port}`);
 
 app.listen(config.port, () => {
     console.log(`📡 Servidor escuchando en http://localhost:${config.port}`);
+});
+
+app.post("/procesar-vendedor", async (req, res) => {
+    try {
+        const response = await axios.post("http://127.0.0.1:8000/procesar_vendedor", req.body);
+        res.json(response.data);
+    } catch (error) {
+        console.error("Error al comunicar con el servicio de Python:", error);
+        res.status(500).json({ error: "Error en el procesamiento con Python" });
+    }
 });
