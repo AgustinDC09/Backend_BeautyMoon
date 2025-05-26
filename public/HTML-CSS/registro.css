@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:  border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /*alineado vertical*/
+    align-items: center;  /*alineado horizontal*/
+    background-color: #F0F4F3;
+
+}
+
+.contenedor {
+    width: 800px;
+    height: 500px;
+    display: flex; /*con esto por defecto las direccion de los elemtnos se ponen en filas*/
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+    /*flex-direction: row; la direccion de los elementos internos hace que sea en filas*/
+}
+
+.contenedor-formas {
+    width: 100%;
+    overflow: hidden; /*hace que no se muestre el contenido que sobre sale del contenedor*/
+}
+
+.contenedor-formas form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in;
+}
+
+.contenedor-formas h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 12px; /*separacion de los elementos internos*/
+    margin-bottom: 25px;
+}
+
+.redes-sociales ion-icon {
+    border: 1px solid #c9cccb;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer; /*cuando paso el mouse por encima de ellos cambia la mano*/
+}
+
+.contenedor-formas span {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.entrada-contenedor {
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    background-color: #EEEEEE;
+}
+
+
+.entrada-contenedor input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit; /*hace que herede el color del fondo del contendenedor*/
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+
+.entrada-contenedor a {
+    color: black;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.boton {
+    width: 170px;
+    height: 45px;
+    font-size: 15px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #3AB397;
+    color: white;
+}
+
+/*animación de los formularios*/
+
+/*.inicio-sesion {
+    transform: translateX(100%); sirve para hacer la animacion en horizontal */
+
+
+.registrarse {
+    transform: translateX(-100%); /* si yo pongo el numero en negativo se mueve hacia la izquierda y positivo se mueve a la derecha*/ 
+    
+}
+
+.contenedor.toggle .inicio-sesion {
+    transform: translateX(100%);
+}
+
+.contenedor.toggle .registrarse {
+    transform: translateX(0);
+}
+
+/*Bienvenida*/
+
+.contenedor-bienvenida {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(100%);
+    background-color: #3AB397;  
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out; 
+    overflow: hidden;
+    border-radius: 50% 0 0 50%; 
+}
+
+.contenedor.toggle .contenedor-bienvenida {
+    transform: translateX(0);
+    border-radius: 0% 50% 50% 0%;background-color: #3aa8ad; 
+}
+
+.contenedor-bienvenida .bienvenido {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /*hacemos que los elementos internos queden en columnas*/
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+
+.bienvenida-inicio {
+    transform: translateX(100%);
+}
+
+.contenedor-bienvenida h3 {
+    font-size: 40px;
+}
+
+.contenedor-bienvenida p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.contenedor-bienvenida .boton {
+    border: 2px solid white;
+    background-color: transparent;
+}
+
+.contenedor.toggle .bienvenida-inicio{  /*si tiene esta clase es porque se hizo click en nuestro formulario*/
+    transform: translateX(0);
+}
+
+.contenedor.toggle .bienvenida-registro{  /*si tiene esta clase es porque se hizo click en nuestro formulario*/
+    transform: translateX(-100%);
+}

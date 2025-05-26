@@ -1,68 +1,129 @@
 body {
-    font-family: 'Inter', sans-serif;/*font-family sirve para darle la fuente de letra*/
-    margin: 0;/*espacio alredeor de un elemento*/
-    padding: 0;/*espacio dentro del elemento*/
+    font-family: 'Inter', sans-serif; /*font-family sirve para darle la fuente de letra*/
+    margin: 0; /*espacio alredeor de un elemento*/
+    padding: 0; /*espacio dentro del elemento*/
     background-color: #f4f4f9;
     color: #333;
-    line-height: 1.6;/*la altura*/
-  }
-  header {
+    line-height: 1.6; /*la altura*/
+}
+header {
     background-color: #f5f5f5;
     padding: 10px 0;
-    text-align: center;/*alineacion horizontal en el centro*/
-    display: flex;/*convierte en un contenedor flexible*/
+    text-align: center;   /*alineacion horizontal en el centro*/
+    display: flex;   /*convierte en un contenedor flexible*/
     align-items: center;
     justify-content: space-between; /*distribuir el espacio disponible entre los elementos hijos a lo largo del eje principal*/
     padding-left: 10px; /*relleno*/
     padding-right: 10px;
     position: relative;
     border-bottom: 1px solid #ccc;
-  }
-  header h1 {
+}
+header h1 {
     color: #333;
     font-weight: 700;
     margin: 0;
     font-size: 2.5em;
-  }
-  header img {
+}
+header img {
     height: 50px;
     margin-right: 10px;
-  }
-  nav ul {/*nav=navegacion ul=lista desordenada, estila toda esa lista*/
+}
+
+.navegacion-principal { /* envuelve la navegación principal */
+    background-color: #f5f5f5;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    display: block; 
+    text-align: center; 
+}
+
+.navegacion-principal .categorias-principales { /*nav=navegacion ul=lista desordenada, estila toda esa lista*/
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: flex; /* las categorías principales son horizontales */
+    justify-content: center; /* centra las categorías principales */
     align-items: center;
-  }
-  nav ul li {
-    display: inline; /*se muestren en linea horizontalmente la lista*/
+}
+
+.navegacion-principal .categorias-principales > li { /*se muestren en linea horizontalmente la lista*/
+    display: inline-block; /* cada categoría principal tenga un desplegable */
     margin: 0 10px;
-  }
-  nav ul li a {
+    position: relative; /* posicionar submenús absolutamente */
+}
+
+.navegacion-principal .categorias-principales > li > a {
     color: #333;
     text-decoration: none; /*elimina el subrayado y/o algun otro tipo de decorado de la lista, y darle estilo */
     font-weight: 600;
     font-size: 1.1em;
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  nav ul li a:hover {
-    background-color: #e0e0e0;
-  }
+    padding: 0; 
+    border-radius: 0; 
+    transition: color 0.3s ease; 
+    display: block;
+}
 
-  h1 {
+.navegacion-principal .categorias-principales > li > a:hover {
+    background-color: transparent; 
+    color: #888; 
+}
+
+.navegacion-principal .menu-desplegable-horizontal {
+    display: none; /* oculto por defecto */
+    position: absolute;
+    top: 100%; /* posiciona el desplegable debajo del "padre" */
+    left: 0;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    min-width: 160px; /* ancho minimo para el desplegable */
+    text-align: left; /* alinea el texto dentro del desplegable a la izquierda */
+}
+
+.navegacion-principal .categorias-principales > li:hover > .menu-desplegable-horizontal {
+    display: block; /* muestra el desplegable al pasar el ratón */
+}
+
+.navegacion-principal .menu-desplegable-horizontal li {
+    display: block; /* cada elemento en el desplegable es un bloque */
+    margin: 0;
+}
+
+.navegacion-principal .menu-desplegable-horizontal li a {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.navegacion-principal .menu-desplegable-horizontal li:last-child a {
+    border-bottom: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.navegacion-principal .menu-desplegable-horizontal li a:hover {
+    background-color: transparent; /* fondo transparente */
+    color: #888; /* cambia solo el color del texto a gris */
+}
+
+h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: oblique;
-  }
-  p {
+}
+p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     font-style: normal;
     text-transform: capitalize;
-  }
-  #barra-busqueda {
+}
+#barra-busqueda {
     display: flex;
     align-items: center;
     border: none;
@@ -72,25 +133,25 @@ body {
     flex: 1;
     max-width: 300px;
     background-color: white;
-  }
-  #entrada-busqueda {
+}
+#entrada-busqueda {
     border: none;
     outline: none;
     flex: 1;
     font-size: 1em;
-  }
-  #boton-buscar {
+}
+#boton-buscar {
     background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
     display: flex;
-  }
-  #boton-buscar img{
+}
+#boton-buscar img{
     height: 20px;
     width: 20px;
-  }
-  .boton-promociones {
+}
+.boton-promociones {
     background-color: #f5f5f5;
     border: none;
     padding: 10px 15px;
@@ -99,55 +160,60 @@ body {
     font-size: 1em;
     transition: background-color 0.3s ease;
     margin-right: 10px;
-  }
-  .boton-promociones:hover {
+}
+.boton-promociones:hover {
     background-color: #e0e0e0;
-  }
-  .icono-carrito {
+}
+.boton-carrito {
+    display: flex; /* para centrar la imagen dentro del enlace */
+    justify-content: center;
+    align-items: center;
     height: 30px;
     width: 30px;
     margin-left: 10px;
-    position: relative;
-  }
-  .navegacion-inferior-encabezado { /*centrar los botones del medio*/
-    display: flex;
-    justify-content: center;
-    background-color: #f5f5f5;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
-  .navegacion-inferior-encabezado ul {
-    list-style: none;
+    position: relative; /* añadir un contador de productos */
+    background-color: transparent; /* para que no tenga fondo el botón */
+    border: none;
     padding: 0;
-    margin: 0;
-    display: flex;
-  }
-  .navegacion-inferior-encabezado ul li {/*para que esten separados (avon, mary kane, natura)*/
-    margin: 0 15px;
-  }
-  .navegacion-inferior-encabezado ul li a {/*funcion para sacar el borde a las listas, color, etc*/
+}
+
+.boton-carrito img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block; /* para evitar espacios de mas alrededor de la imagen */
+}
+
+.boton-carrito:hover {
+    opacity: 0.8;
+}
+
+.navegacion-inferior-encabezado ul li a {/*funcion para sacar el borde a las listas, color, etc*/
     color: #333;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1em;
     transition: color 0.3s ease;
-  }
-  .navegacion-inferior-encabezado ul li a:hover {/*funcion para pasar el mouse*/
+}
+.navegacion-inferior-encabezado ul li a:hover {/*funcion para pasar el mouse*/
     color: #999;
-  }
+}
 
-  @media (max-width: 768px){
-    nav ul {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      text-align: center;
+@media (max-width: 768px){
+    .navegacion-principal {
+        display: none; /* Oculta toda la navegación principal en pantallas pequeñas */
     }
-
-    .navegacion-inferior-encabezado ul li{
-      margin: 10px 0;
+    .icono-menu {
+        display: block; /* Se muestra las tres lineas */
     }
-  }
+    .navegacion-inferior-encabezado {
+        display: none; /* Oculta la navegación inferior en móvil */
+    }
+}
+@media (min-width: 769px) {
+    .icono-menu {
+        display: none; /* oculta el icono del menu en pantallas grandes */
+    }
+}
 .icono-menu {
     display: block; /* se muestra las 3 lineas en pc */
     font-size: 2em;
@@ -155,18 +221,32 @@ body {
     padding: 5px;
 }
 
-@media (max-width: 768px) {
-  
-  .icono-menu {
-    display: block; /* Se muestra las tres linea en cel */
-  }
-  
-}
 .promocion {
-  width: 98%; /*ocupa casi todo el ancho del contenedor*/
-  height: auto; /*mantiene la proporción de la imagen*/
-  max-height: 300px; /*altura maxima para que no sea demasiado grande en pantallas muy altas*/
-  display: block;
- margin: 10px auto; /* centra la imagen con un poco de margen vertical */
- box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*para darle una sombra */
+    width: 98%; /*ocupa casi todo el ancho del contenedor*/
+    height: auto; /*mantiene la proporción de la imagen*/
+    max-height: 300px; /*altura maxima para que no sea demasiado grande en pantallas muy altas*/
+    display: block;
+    margin: 10px auto; /* centra la imagen con un poco de margen vertical */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*para darle una sombra */
+}
+
+.boton-inicio {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.boton-inicio a {
+    color: #333;
+    text-decoration: none;
+}
+
+.boton-inicio:hover {
+    background-color: #e0e0e0;
 }
