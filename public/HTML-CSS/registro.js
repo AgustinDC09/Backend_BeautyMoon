@@ -9,12 +9,6 @@ btnRegistrarse.addEventListener("click", () => contenedor.classList.add("toggle"
 // Conexión al backend
 document.addEventListener("DOMContentLoaded", () => {
     const formRegistro = document.querySelector(".registrarse");
-    const mensajeRegistro = document.getElementById("mensaje-registro");
-    if (!mensajeRegistro) {
-        console.error("❌ Error: El elemento #mensaje-registro no existe en el DOM.");
-        return;
-    }
-
 
     formRegistro.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -24,8 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = formRegistro.querySelector("input[placeholder='Ingrese su Contraseña']").value;
 
         if (!email || !password) {
-            mostrarMensaje("❌ Debes ingresar un correo y una contraseña.", "red");
-            return;
+            return; // 🔹 Ya no muestra mensajes si faltan datos
         }
 
         const datos = { username, email, password };
@@ -43,26 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(`Error ${response.status}: No se pudo registrar.`);
             }
 
-            const resultado = await response.json();
-            mostrarMensaje(`✅ ${resultado.mensaje}`, "green");
+            await response.json(); // 🔹 No hace nada con la respuesta del backend
         } catch (error) {
             console.error("❌ Error en la solicitud:", error);
-            mostrarMensaje(`⚠️ Error en el registro: ${error.message}`, "red");
         }
     });
-
-    function mostrarMensaje(texto, color) {
-        if (!mensajeRegistro) {
-            console.error("❌ Error: El elemento #mensaje-registro no existe en el DOM.");
-            return;
-        }
-
-        mensajeRegistro.textContent = texto;
-        mensajeRegistro.style.color = color;
-        mensajeRegistro.style.display = "block";
-
-        setTimeout(() => {
-            mensajeRegistro.style.display = "none";
-        }, 3000);
-    }
 });
