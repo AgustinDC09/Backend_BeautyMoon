@@ -16,20 +16,19 @@ app.add_middleware(
 )
 
 def conectar_db():
-    """Conecta con la base de datos MySQL en InfinityFree."""
+    """Conecta con la base de datos MySQL en Clever Cloud."""
     try:
         conn = mysql.connector.connect(
-            host="sql310.infinityfree.com",
-            user="if0_39089723",
-            password="xQlJfiCVjF",
-            database="if0_39089723_beautymoon",
+            host="buswkbqy2bvfyzy4vhe9-mysql.services.clever-cloud.com",
+            user="upopkuacmtmeipvc",
+            password="dpk98My0jOXsGQGVHLcL",
+            database="buswkbqy2bvfyzy4vhe9",
             port=3306
         )
         return conn
     except mysql.connector.Error as err:
-        print("Error al conectar con la base de datos:", err)
+        print("❌ Error al conectar con la base de datos:", err)
         return None
-
 
 def verificar_password(password, hash_guardado):
     """Compara la contraseña ingresada con el hash almacenado."""
@@ -55,7 +54,7 @@ async def registro(datos: dict):
     try:
         cursor.execute("INSERT INTO user (username, email, password) VALUES (%s, %s, %s)", (username, email, password_hash))
         conn.commit()
-        return {"mensaje": "Usuario registrado exitosamente"}
+        return {"mensaje": "✅ Usuario registrado exitosamente"}
     except mysql.connector.Error as err:
         raise HTTPException(status_code=500, detail=f"Error en la base de datos: {err}")
     finally:
@@ -89,7 +88,7 @@ async def login(datos: dict):
     if verificar_password(password, password_hash):  
         cursor.close()
         conn.close()
-        return {"mensaje": "Inicio de sesión exitoso", "usuario_id": usuario_id}
+        return {"mensaje": "✅ Inicio de sesión exitoso", "usuario_id": usuario_id}
     else:
         cursor.close()
         conn.close()
