@@ -1,12 +1,11 @@
-const bcrypt = require('bcrypt'); // 🔹 Agregamos bcrypt para encriptar contraseñas
+const bcrypt = require('bcrypt'); // 🔹 Para seguridad en contraseñas
 const Usuario = require('../models/usuario');
 
-// 🔹 Nueva función dedicada al registro con seguridad mejorada
 const registrarUsuario = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        if (!username || !email || !password) {
+        if (!email || !password) {
             return res.status(400).json({ error: "Faltan datos obligatorios" });
         }
 
@@ -20,11 +19,12 @@ const registrarUsuario = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const passwordHash = await bcrypt.hash(password, salt);
 
-        // Crear nuevo usuario con contraseña encriptada
+        // 🔹 Registrar usuario en la base de datos
         const nuevoUsuario = await Usuario.create({ username, email, password: passwordHash });
+        
         res.status(201).json({ mensaje: "✅ Usuario registrado exitosamente", usuario: nuevoUsuario });
     } catch (error) {
-        console.trace("❌ Error crítico en el registro:", error); // 🔹 Más detalle en los logs
+        console.error("❌ Error al registrar usuario:", error);
         res.status(500).json({ error: "Error en el servidor", detalle: error.message });
     }
 };

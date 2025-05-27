@@ -27,15 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const datos = { username, email, password }; // Datos del formulario
+        const datos = { username, email, password };
         console.log("Enviando datos al backend:", datos);
 
         try {
-            // URL actualizada para Clever Cloud
+            // 🔹 URL corregida para apuntar correctamente a la ruta en el backend
             const BASE_URL = "https://backend-beautymoon.onrender.com";
 
-
-            const response = await fetch(`${BASE_URL}/registro`, {
+            const response = await fetch(`${BASE_URL}/usuarios/registro`, { // 🔹 Cambio aquí
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -51,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert(resultado.mensaje);
         } catch (error) {
             console.error("❌ Error en la solicitud:", error);
-            alert("Hubo un problema con el registro. Inténtalo nuevamente.");
+            alert(`Hubo un problema con el registro. Detalle: ${error.message}`);
         }
     });
 });
