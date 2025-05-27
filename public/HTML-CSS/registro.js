@@ -2,13 +2,14 @@ const contenedor = document.querySelector(".contenedor");
 const btnInicioSesion = document.getElementById("btn-inicio-sesion");
 const btnRegistrarse = document.getElementById("btn-registrarse");
 
+// Alternar entre inicio de sesión y registro
 btnInicioSesion.addEventListener("click", () => contenedor.classList.remove("toggle"));
 btnRegistrarse.addEventListener("click", () => contenedor.classList.add("toggle"));
 
 // Conexión al backend
 document.addEventListener("DOMContentLoaded", () => {
     const formRegistro = document.querySelector(".registrarse");
-    const mensajeDiv = document.querySelector("#mensaje"); // 🔹 Elemento donde aparecerá el mensaje
+    const mensajeRegistro = document.getElementById("mensaje-registro");
 
     formRegistro.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = formRegistro.querySelector("input[placeholder='Ingrese su Contraseña']").value;
 
         if (!email || !password) {
-            mostrarMensaje("❌ Debes ingresar un correo y una contraseña.", "error");
+            mostrarMensaje("❌ Debes ingresar un correo y una contraseña.", "red");
             return;
         }
 
@@ -38,19 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const resultado = await response.json();
-            mostrarMensaje(`✅ ${resultado.mensaje}`, "success"); // 🔹 Mensaje en pantalla, sin `alert()`
+            mostrarMensaje(`✅ ${resultado.mensaje}`, "green");
         } catch (error) {
             console.error("❌ Error en la solicitud:", error);
-            mostrarMensaje(`⚠️ Error en el registro: ${error.message}`, "error");
+            mostrarMensaje(`⚠️ Error en el registro: ${error.message}`, "red");
         }
     });
 
-    function mostrarMensaje(texto, tipo) {
-        mensajeDiv.textContent = texto;
-        mensajeDiv.style.display = "block";
+    function mostrarMensaje(texto, color) {
+        if (!mensajeRegistro) return;
+
+        mensajeRegistro.textContent = texto;
+        mensajeRegistro.style.color = color;
+        mensajeRegistro.style.display = "block";
 
         setTimeout(() => {
-            mensajeDiv.textContent = "";
+            mensajeRegistro.style.display = "none";
         }, 3000);
     }
 });
