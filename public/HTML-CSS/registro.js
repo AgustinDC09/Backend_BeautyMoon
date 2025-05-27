@@ -1,18 +1,17 @@
 const contenedor = document.querySelector(".contenedor");
-const btnInicioSesion = document.getElementById("btn-inicio-sesion")
-const btnRegistrarse = document.getElementById("btn-registrarse")
+const btnInicioSesion = document.getElementById("btn-inicio-sesion");
+const btnRegistrarse = document.getElementById("btn-registrarse");
 
-//creo el evento click al boton de inicio de sesión
-btnInicioSesion.addEventListener("click", ()=>{
+// Evento click para alternar inicio de sesión y registro
+btnInicioSesion.addEventListener("click", () => {
     contenedor.classList.remove("toggle");
-})
+});
 
-btnRegistrarse.addEventListener("click", ()=>{
+btnRegistrarse.addEventListener("click", () => {
     contenedor.classList.add("toggle");
-})
+});
 
-//conexión al backend
-
+// Conexión al backend
 document.addEventListener("DOMContentLoaded", () => {
     const formRegistro = document.querySelector(".registrarse");
 
@@ -28,12 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const datos = { username, email, password };  // Declaración correcta de `datos`
-
-        console.log("Enviando datos al backend:", datos); // Verificación en consola
+        const datos = { username, email, password }; // Datos del formulario
+        console.log("Enviando datos al backend:", datos);
 
         try {
-            const response = await fetch("http://localhost:8000/registro", {
+            // URL actualizada para Clever Cloud
+            const BASE_URL = "https://backend-beautymoon.clever-cloud.com";
+
+            const response = await fetch(`${BASE_URL}/registro`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -41,12 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(datos)
             });
 
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: No se pudo registrar.`);
+            }
+
             const resultado = await response.json();
             alert(resultado.mensaje);
         } catch (error) {
-            console.error("Error en la solicitud:", error);
-            alert("Hubo un problema con el registro.");
+            console.error("❌ Error en la solicitud:", error);
+            alert("Hubo un problema con el registro. Inténtalo nuevamente.");
         }
     });
 });
-
