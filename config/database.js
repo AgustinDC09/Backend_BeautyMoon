@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
 );
 
 sequelize.authenticate()
-    .then(() => console.log('✅ Conexión a la base de datos establecida'))
+    .then(() => console.log('✅ Conexión a MySQL exitosa en InfinityFree'))
     .catch(error => console.error('❌ Error al conectar a la base de datos:', error));
 
 module.exports = sequelize;

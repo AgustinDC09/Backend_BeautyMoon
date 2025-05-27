@@ -1,10 +1,10 @@
 require('dotenv').config(); // Cargar las variables de entorno primero
 const express = require('express');
-const config = require('./Config/config.js'); // Asegúrate de que la ruta es correcta
-//const axios = require("axios"); //
+const sequelize = require('./Config/database');
+const axios = require("axios");
 
 const app = express();
-const sequelize = require('./Config/database');
+
 // Importamos las rutas
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const productoRoutes = require('./routes/productosRoutes');
@@ -21,25 +21,35 @@ app.use('/carrito', carritoRoutes);
 app.use('/transacciones', transaccionRoutes);
 app.use('/envios', envioRoutes);
 
+// Conectar a MySQL en InfinityFree
+sequelize.authenticate()
+    .then(() => console.log("✅ Conexión a MySQL exitosa"))
+    .catch(err => console.error("❌ Error en la conexión a MySQL:", err));
+
 sequelize.sync({ force: false })
     .catch(err => console.error('❌ Error al sincronizar la base de datos:', err));
 
 app.get('/', (req, res) => {
-    res.send('¡El backend está funcionando! 🚀');
+    res.send('¡El backend está funcionando en Render! 🚀');
 });
 
-console.log(`Puerto configurado: ${config.port}`);
+// URL de backend en Render
+const BACKEND_URL = "https://backend-beautymoon.onrender.com";
 
-app.listen(config.port, () => {
-    console.log(`📡 Servidor escuchando en http://localhost:${config.port}`);
-});
-
+// Ruta para procesar vendedores desde el servicio externo
 app.post("/procesar-vendedor", async (req, res) => {
     try {
-        const response = await axios.post("http://127.0.0.1:8000/procesar_vendedor", req.body);
+        const response = await axios.post(`${BACKEND_URL}/procesar_vendedor`, req.body);
         res.json(response.data);
     } catch (error) {
-        console.error("Error al comunicar con el servicio de Python:", error);
+        console.error("❌ Error al comunicar con el servicio de Python:", error);
         res.status(500).json({ error: "Error en el procesamiento con Python" });
     }
 });
+
+// Configurar puerto desde las variables de entorno
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`📡 Servidor escuchando en Render: ${BACKEND_URL}`);
+});
+

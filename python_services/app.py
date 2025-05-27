@@ -16,19 +16,20 @@ app.add_middleware(
 )
 
 def conectar_db():
-    """Conecta con la base de datos MySQL."""
+    """Conecta con la base de datos MySQL en InfinityFree."""
     try:
         conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="DBOperador",
-            database="beautymoon",
+            host="sql310.infinityfree.com",
+            user="if0_39089723",
+            password="xQlJfiCVjF",
+            database="if0_39089723_beautymoon",
             port=3306
         )
         return conn
     except mysql.connector.Error as err:
         print("Error al conectar con la base de datos:", err)
         return None
+
 
 def verificar_password(password, hash_guardado):
     """Compara la contraseña ingresada con el hash almacenado."""
