@@ -1,7 +1,7 @@
 require('dotenv').config(); // Cargar variables del .env
 
 module.exports = {
-    port: process.env.PORT || 3000,  // 🔹 Aseguramos que siempre tenga un valor
+    port: process.env.PORT || 3000,  
     development: { 
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
