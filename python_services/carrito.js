@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
                 // URL del backend en Clever Cloud
-                const BASE_URL = "https://backend-beautymoon.clever-cloud.com";
+                const BASE_URL = "https://backend-beautymoon.onrender.com";
+
 
                 // Obtener el ID del producto desde el backend antes de enviarlo
                 const resProducto = await fetch(`${BASE_URL}/obtener_producto/${encodeURIComponent(producto_nombre)}`);

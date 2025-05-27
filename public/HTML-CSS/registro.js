@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // URL actualizada para Clever Cloud
-            const BASE_URL = "https://backend-beautymoon.clever-cloud.com";
+            const BASE_URL = "https://backend-beautymoon.onrender.com";
+
 
             const response = await fetch(`${BASE_URL}/registro`, {
                 method: "POST",
