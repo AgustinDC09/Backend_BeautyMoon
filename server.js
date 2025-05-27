@@ -1,9 +1,20 @@
 require('dotenv').config(); // Cargar las variables de entorno primero
 const express = require('express');
+const cors = require('cors'); // 🔹 Importamos el middleware de CORS
 const sequelize = require('./config/database');
 const fetch = require("node-fetch");
 
 const app = express();
+
+// **Configurar CORS para permitir solicitudes desde GitHub Pages**
+app.use(cors({
+    origin: "https://agustindc09.github.io", // 🔹 Permite solicitudes desde el frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // 🔹 Métodos permitidos
+    allowedHeaders: ["Content-Type"], // 🔹 Cabeceras permitidas
+    credentials: true // 🔹 Permitir envío de cookies y autenticación si es necesario
+}));
+
+app.use(express.json());
 
 // Importamos las rutas
 const usuarioRoutes = require('./routes/usuarioRoutes');
@@ -12,9 +23,6 @@ const carritoRoutes = require('./routes/carritoRoutes');
 const transaccionRoutes = require('./routes/transaccionesRoutes');
 const envioRoutes = require('./routes/envioRoutes');
 
-app.use(express.json());
-
-// Configuración de rutas
 app.use('/usuarios', usuarioRoutes);
 app.use('/productos', productoRoutes);
 app.use('/carrito', carritoRoutes);
@@ -30,11 +38,11 @@ sequelize.sync({ force: false })
     .catch(err => console.error('❌ Error al sincronizar la base de datos:', err));
 
 app.get('/', (req, res) => {
-    res.send('¡El backend está funcionando en Clever Cloud! 🚀');
+    res.send('¡El backend está funcionando en Render con CORS activado! 🚀');
 });
 
-// URL del backend en Clever Cloud
-const BACKEND_URL = "https://backend-beautymoon.clever-cloud.com";
+// URL del backend en Render
+const BACKEND_URL = "https://backend-beautymoon.onrender.com";
 
 // Ruta para procesar vendedores desde el servicio externo
 app.post("/procesar-vendedor", async (req, res) => {
@@ -60,5 +68,5 @@ app.post("/procesar-vendedor", async (req, res) => {
 // Configurar puerto desde las variables de entorno
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`📡 Servidor escuchando en Clever Cloud: ${BACKEND_URL}`);
+    console.log(`📡 Servidor escuchando en Render: ${BACKEND_URL}`);
 });
