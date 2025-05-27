@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
 
-// Ruta para obtener todos los usuarios
+// Obtener todos los usuarios
 router.get('/', usuarioController.obtenerUsuarios);
 
-// Ruta para crear un nuevo usuario
-router.post('/', usuarioController.crearUsuario);
+// 🔹 Nueva ruta específica para registro
+router.post('/registro', usuarioController.registrarUsuario);
 
-// Ruta para borrar usuario existente
+// Eliminar usuario
 router.delete('/:id', usuarioController.eliminarUsuario);
-
 
 module.exports = router;

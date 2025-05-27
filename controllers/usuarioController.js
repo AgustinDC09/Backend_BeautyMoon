@@ -1,7 +1,7 @@
 const Usuario = require('../models/usuario');
 
-// Crear un nuevo usuario
-const crearUsuario = async (req, res) => {
+// 🔹 Nueva función dedicada al registro
+const registrarUsuario = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
@@ -18,18 +18,17 @@ const crearUsuario = async (req, res) => {
 
         // Crear nuevo usuario
         const nuevoUsuario = await Usuario.create({ username, email, password });
-        res.status(201).json(nuevoUsuario);
+        res.status(201).json({ mensaje: "✅ Usuario registrado exitosamente", usuario: nuevoUsuario });
     } catch (error) {
-        console.error('❌ Error al crear usuario:', error);
-        res.status(500).json({ error: 'Error al crear usuario' });
+        console.error('❌ Error al registrar usuario:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
     }
 };
 
-// Obtener todos los usuarios
 const obtenerUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.findAll({
-            attributes: ['id', 'username', 'email']  // 🔹 Excluye "password"
+            attributes: ['id', 'username', 'email']
         });
         res.json(usuarios);
     } catch (error) {
@@ -37,7 +36,6 @@ const obtenerUsuarios = async (req, res) => {
         res.status(500).json({ error: 'Error al obtener usuarios' });
     }
 };
-
 
 const eliminarUsuario = async (req, res) => {
     try {
@@ -56,4 +54,4 @@ const eliminarUsuario = async (req, res) => {
     }
 };
 
-module.exports = { obtenerUsuarios, crearUsuario, eliminarUsuario };
+module.exports = { obtenerUsuarios, registrarUsuario, eliminarUsuario };
