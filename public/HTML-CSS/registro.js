@@ -1,25 +1,14 @@
 const contenedor = document.querySelector(".contenedor");
 const btnInicioSesion = document.getElementById("btn-inicio-sesion");
 const btnRegistrarse = document.getElementById("btn-registrarse");
-const mensajeRegistro = document.createElement("div"); // 🔹 Creamos un elemento para mensajes
 
-mensajeRegistro.classList.add("mensaje-registro");
-document.body.appendChild(mensajeRegistro);
-
-// Evento click para alternar inicio de sesión y registro
-btnInicioSesion.addEventListener("click", () => {
-    contenedor.classList.remove("toggle");
-    mensajeRegistro.style.display = "none"; // 🔹 Oculta el mensaje si el usuario cambia de pestaña
-});
-
-btnRegistrarse.addEventListener("click", () => {
-    contenedor.classList.add("toggle");
-    mensajeRegistro.style.display = "none";
-});
+btnInicioSesion.addEventListener("click", () => contenedor.classList.remove("toggle"));
+btnRegistrarse.addEventListener("click", () => contenedor.classList.add("toggle"));
 
 // Conexión al backend
 document.addEventListener("DOMContentLoaded", () => {
     const formRegistro = document.querySelector(".registrarse");
+    const mensajeDiv = document.querySelector("#mensaje"); // 🔹 Elemento donde aparecerá el mensaje
 
     formRegistro.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -38,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const BASE_URL = "https://backend-beautymoon.onrender.com";
-
-            const response = await fetch(`${BASE_URL}/usuarios/registro`, { // 🔹 Ruta corregida
+            const response = await fetch(`${BASE_URL}/usuarios/registro`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(datos)
@@ -50,22 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const resultado = await response.json();
-            mostrarMensaje(`✅ ${resultado.mensaje}`, "success"); // 🔹 Mostramos el mensaje en pantalla
+            mostrarMensaje(`✅ ${resultado.mensaje}`, "success"); // 🔹 Mensaje en pantalla, sin `alert()`
         } catch (error) {
             console.error("❌ Error en la solicitud:", error);
             mostrarMensaje(`⚠️ Error en el registro: ${error.message}`, "error");
         }
     });
+
+    function mostrarMensaje(texto, tipo) {
+        mensajeDiv.textContent = texto;
+        mensajeDiv.style.display = "block";
+
+        setTimeout(() => {
+            mensajeDiv.textContent = "";
+        }, 3000);
+    }
 });
-
-// 🔹 Función para mostrar mensajes en pantalla
-function mostrarMensaje(texto, tipo) {
-    mensajeRegistro.textContent = texto;
-    mensajeRegistro.style.display = "block";
-    mensajeRegistro.className = `mensaje-registro ${tipo}`;
-
-    setTimeout(() => {
-        mensajeRegistro.style.opacity = "0";
-        setTimeout(() => mensajeRegistro.style.display = "none", 500);
-    }, 3000);
-}

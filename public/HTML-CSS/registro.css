@@ -185,27 +185,3 @@ body {
     transform: translateX(-100%);
 }
 
-.mensaje-registro {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    text-align: center;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.success {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.error {
-    background-color: #f44336;
-    color: white;
-}
