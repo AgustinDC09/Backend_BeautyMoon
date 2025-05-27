@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Finalizar Compra</title>
+    <link rel="stylesheet" href="finalizar_compra.css">
+    <link rel="icon" href="img/beauty moon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda online de maquillaje, cuidado para la piel y perfumes">
+    <meta name="keywords" content="Maquillaje, cuidado para la piel, perfumes, cosméticos, belleza">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <div class="contenedor-finalizar-compra">
+            <h1>FINALIZAR COMPRA</h1>
+            <div class="contenido-pago">
+                <div class="formulario-pago">
+                    <div class="bloque-seccion">
+                        <h2>1 - DATOS PERSONALES</h2>
+                        <div class="grupo-formulario">
+                            <label for="email">Correo electrónico*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="fila-formulario">
+                            <div class="grupo-formulario mitad-ancho">
+                                <label for="nombre">Nombre*</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="grupo-formulario mitad-ancho">
+                                <label for="apellidos">Apellidos</label>
+                                <input type="text" id="apellidos" name="apellidos" required>
+                            </div>
+                        </div>
+                        <div class="fila-formulario">
+                            <div class="grupo-formulario mitad-ancho">
+                                <label for="dni">DNI*</label>
+                                <input type="text" id="dni" name="dni" required>
+                            </div>
+                            <div class="grupo-formulario mitad-ancho">
+                                <label for="telefono">Teléfono / Móvil*</label>
+                                <input type="tel" id="telefono" name="telefono" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-continuar">CONTINUAR</button>
+                    </div>
+
+                    <div class="bloque-seccion">
+                        <h2>2 - ENVÍO O RETIRO</h2>
+                        <div class="opciones-envio-retiro">
+                            <button class="boton-opcion-envio activo" id="btn-domicilio">Enviar a domicilio</button>
+                            <button class="boton-opcion-envio" id="btn-retiro">Retirar por un punto</button>
+                        </div>
+
+                        <div class="seccion-envio-domicilio">
+                            <div class="sub-seccion">
+                                <h3>Método de entrega</h3>
+                            </div>
+
+                            <div class="sub-seccion">
+                                <h3>Completa tu dirección de entrega</h3>
+                                <div class="direccion-actual">
+                                    <span>Mendoza - <a href="#" class="link-cambiar">Cambiar</a></span>
+                                </div>
+                                <div class="fila-formulario">
+                                    <div class="grupo-formulario mitad-ancho">
+                                        <label for="calle">Calle*</label>
+                                        <input type="text" id="calle" name="calle" required>
+                                    </div>
+                                    <div class="grupo-formulario mitad-ancho">
+                                        <label for="numero">Número*</label>
+                                        <input type="text" id="numero" name="numero" required>
+                                    </div>
+                                </div>
+                                <div class="fila-formulario">
+                                    <div class="grupo-formulario mitad-ancho">
+                                        <label for="piso-depto">Piso / Departamento</label>
+                                        <input type="text" id="piso-depto" name="piso-depto">
+                                    </div>
+                                    <div class="grupo-formulario mitad-ancho">
+                                        <label for="ciudad">Ciudad *</label>
+                                        <select id="ciudad" name="ciudad" required>
+                                            <option value="Mendoza" selected>Mendoza</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-seccion">
+                                <h3>¿Quién recibe el pedido?</h3>
+                                <div class="grupo-formulario">
+                                    <input type="text" id="recibe-pedido" name="recibe-pedido" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="seccion-retiro-punto" style="display: none;">
+                            <div class="campo-codigo-postal">
+                                <label for="codigo-postal">Código postal*</label>
+                                <input type="text" id="codigo-postal" name="codigo-postal" class="input-error" required>
+                                <p class="mensaje-error">No sé mi código postal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bloque-seccion">
+                        <h2>3 - PAGO</h2>
+                        <button class="btn-giftcard">Utilizar GiftCard</button>
+                        <div class="opciones-pago">
+                            <div class="opcion-pago seleccionado">
+                                <img src="img/tarjeta_credito.png" alt="Tarjeta de crédito">
+                                <p>Tarjeta de crédito</p>
+                            </div>
+                            <div class="opcion-pago">
+                                <img src="img/tarjeta_debito.png" alt="Tarjeta de débito">
+                                <p>Tarjeta de débito</p>
+                            </div>
+                            <div class="opcion-pago">
+                                <img src="img/mercado_pago.png" alt="Mercado Pago">
+                                <p>Mercado Pago</p>
+                            </div>
+                            <div class="opcion-pago">
+                                <img src="img/modo.png" alt="MODO">
+                                <p>MODO</p>
+                            </div>
+                            <div class="opcion-pago">
+                                <img src="img/google_pay.png" alt="Google Pay">
+                                <p>Google Pay</p>
+                            </div>
+                        </div>
+                        <div class="logos-tarjetas">
+                            <img src="img/mastercard.png" alt="Mastercard">
+                            <img src="img/visa.png" alt="Visa">
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="numero-tarjeta">Número</label>
+                            <input type="text" id="numero-tarjeta" name="numero-tarjeta" required>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="cuotas-disponibles">Cuotas disponibles:</label>
+                            <select id="cuotas-disponibles" name="cuotas-disponibles">
+                                <option value="1">Total - $ </option>
+                            </select>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="nombre-tarjeta">Nombre y Apellido como figura en la tarjeta</label>
+                            <input type="text" id="nombre-tarjeta" name="nombre-tarjeta" required>
+                        </div>
+                        <div class="fila-formulario">
+                            <div class="grupo-vencimiento-y-seguridad">
+                                <div class="grupo-formulario ancho-tercio">
+                                    <label for="fecha-vencimiento-mm">Fecha de Vencimiento</label>
+                                    <select id="fecha-vencimiento-mm" name="fecha-vencimiento-mm">
+                                        <option value="">MM</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="grupo-formulario ancho-tercio">
+                                    <select id="fecha-vencimiento-aa" name="fecha-vencimiento-aa">
+                                        <option value="">AA</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                </div>
+                                <div class="grupo-formulario ancho-tercio">
+                                    <label for="codigo-seguridad">Código de Seguridad</label>
+                                    <input type="text" id="codigo-seguridad" name="codigo-seguridad" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resumen-compra">
+                    <h2>Resumen de la compra</h2>
+                    <div class="resumen-productos">
+                        <p class="cantidad-productos">2 PRODUCTOS</p>
+                        <div class="item-resumen">
+                            <div class="detalles-producto-resumen">
+                                <img src="img/mascara de pestañas.png" alt="Máscara Alargadora de Pesteñas Exxtravagant Extreme Avon">
+                                <p>Máscara Alargadora de Pesteñas Exxtravagant Extreme Avon</p>
+                            </div>
+                            <div class="precio-producto-resumen">
+                                <p>Cantidad: 1</p>
+                                <p>$ 20.700</p>
+                            </div>
+                        </div>
+                        <div class="item-resumen">
+                            <div class="detalles-producto-resumen">
+                                <img src="img/labial.png" alt="Brillo Labial Glossy Color Trend">
+                                <p>Brillo Labial Glossy Color Trend</p>
+                            </div>
+                            <div class="precio-producto-resumen">
+                                <p>Cantidad: 1</p>
+                                <p>$ 4.800</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detalles-precios">
+                        <div class="fila-precio">
+                            <span>Subtotal</span>
+                            <span>$ 25.500</span>
+                        </div>
+                        <div class="fila-precio">
+                            <span>Gastos del envío</span>
+                            <span>$ -</span>
+                        </div>
+                        <div class="fila-precio">
+                            <span>Impuestos Nacionales</span>
+                            <span>$ -</span>
+                        </div>
+                        <div class="fila-precio-total">
+                            <span>Total</span>
+                            <span class="monto-total">$ 25.500</span>
+                        </div>
+                    </div>
+                    <div class="opciones-checkbox">
+                        <label>
+                            <input type="checkbox"> Acepto los <a href=""> Términos y Condiciones</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
