@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../Config/database'); // Usamos 'Config' con mayúscula según tu cambio
+const sequelize = require('../config/database'); // Usamos 'Config' con mayúscula según tu cambio
 const Usuario = require('./usuario');
 
 const Transaccion = sequelize.define('Transaccion', {

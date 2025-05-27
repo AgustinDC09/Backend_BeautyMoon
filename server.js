@@ -1,6 +1,6 @@
 require('dotenv').config(); // Cargar las variables de entorno primero
 const express = require('express');
-const sequelize = require('./Config/database');
+const sequelize = require('./config/database');
 const axios = require("axios");
 
 const app = express();

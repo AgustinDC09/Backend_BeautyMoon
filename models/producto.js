@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../Config/database');
+const sequelize = require('../config/database');
 const Usuario = require('./usuario'); // Relación con el usuario que agrega el producto
 
 const Producto = sequelize.define('Producto', {

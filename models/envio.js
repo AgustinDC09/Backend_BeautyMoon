@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../Config/database'); // Recuerda que usamos 'Config' con mayúscula
+const sequelize = require('../config/database'); // Recuerda que usamos 'Config' con mayúscula
 const Transaccion = require('./transaccion');
 
 const Envio = sequelize.define('Envio', {
