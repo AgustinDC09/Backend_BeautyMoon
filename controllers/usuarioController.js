@@ -5,25 +5,23 @@ const registrarUsuario = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        // Validación de datos
-        if (!username || !email || !password) {
-            return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+        if (!email || !password) {
+            return res.status(400).json({ mensaje: "Faltan datos obligatorios" });
         }
 
-        // Verificar si el usuario ya existe
         const usuarioExistente = await Usuario.findOne({ where: { email } });
         if (usuarioExistente) {
-            return res.status(409).json({ error: 'El correo ya está registrado' });
+            return res.status(409).json({ mensaje: "El correo ya está registrado" });
         }
 
-        // Crear nuevo usuario
         const nuevoUsuario = await Usuario.create({ username, email, password });
         res.status(201).json({ mensaje: "✅ Usuario registrado exitosamente", usuario: nuevoUsuario });
     } catch (error) {
-        console.error('❌ Error al registrar usuario:', error);
-        res.status(500).json({ error: 'Error en el servidor' });
+        console.error("❌ Error al registrar usuario:", error);
+        res.status(500).json({ error: "Error en el servidor", detalle: error.message });
     }
 };
+
 
 const obtenerUsuarios = async (req, res) => {
     try {
