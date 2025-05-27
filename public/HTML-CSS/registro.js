@@ -10,6 +10,11 @@ btnRegistrarse.addEventListener("click", () => contenedor.classList.add("toggle"
 document.addEventListener("DOMContentLoaded", () => {
     const formRegistro = document.querySelector(".registrarse");
     const mensajeRegistro = document.getElementById("mensaje-registro");
+    if (!mensajeRegistro) {
+        console.error("❌ Error: El elemento #mensaje-registro no existe en el DOM.");
+        return;
+    }
+
 
     formRegistro.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -47,7 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function mostrarMensaje(texto, color) {
-        if (!mensajeRegistro) return;
+        if (!mensajeRegistro) {
+            console.error("❌ Error: El elemento #mensaje-registro no existe en el DOM.");
+            return;
+        }
 
         mensajeRegistro.textContent = texto;
         mensajeRegistro.style.color = color;
