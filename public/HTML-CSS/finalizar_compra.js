@@ -152,53 +152,35 @@
             showPaymentFields(initialSelectedPayment.dataset.payment);
         }
     });
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     const botonFinalizar = document.querySelector('.boton-finalizar');
-    
+
     botonFinalizar.addEventListener('click', async () => {
         const opcionSeleccionada = document.querySelector('.opcion-pago.seleccionado');
-        
+
         if (!opcionSeleccionada) {
             alert("Por favor, selecciona un método de pago.");
             return;
         }
-        
+
         const metodoPago = opcionSeleccionada.dataset.payment;
-        
+        console.log("🔹 Página cargada, ejecutando calcularTotal()...");
+        calcularTotal();  
+
         if (metodoPago === 'mercado-pago') {
-            // Validar que los datos del usuario están completos antes de proceder
-            const nombre = document.getElementById('nombre-tarjeta').value.trim();
-            const dni = document.getElementById('dni-pago').value.trim();
-            
-            if (!nombre || !dni) {
-                alert("Completa todos los datos antes de finalizar la compra.");
+            const totalCarrito = localStorage.getItem('totalCarrito');
+
+            if (!totalCarrito || parseFloat(totalCarrito) <= 0) {
+                alert("Hubo un problema al calcular el total. Verifica tu carrito.");
                 return;
             }
 
-            try {
-                // Enviar solicitud al backend para generar el pago
-                const response = await fetch('https://backend-beautymoon.onrender.com/crear-pago', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        title: "Compra en Beauty Moon",
-                        price: 1000, // 🔹 Reemplaza esto con el total de la compra
-                        quantity: 1
-                    })
-                });
+            console.log("🔹 Redirigiendo manualmente a Mercado Pago...");
 
-                const data = await response.json();
+            // ✅ Simulación de pago con un enlace generado manualmente
+            const mercadoPagoURL = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1485254307-a495b8c8-ebe3-47e7-8cf8-893d333ab444`;
 
-                if (data && data.init_point) {
-                    // Redirigir al usuario a la página de pago de Mercado Pago
-                    window.location.href = data.init_point;
-                } else {
-                    alert("Hubo un problema al generar el pago. Inténtalo nuevamente.");
-                }
-            } catch (error) {
-                console.error("❌ Error en la solicitud de pago:", error);
-                alert("No se pudo procesar el pago.");
-            }
+            window.location.href = mercadoPagoURL;
         }
     });
 });

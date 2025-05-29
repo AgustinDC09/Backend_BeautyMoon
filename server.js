@@ -6,31 +6,53 @@ const mercadopago = require('mercadopago');
 
 const app = express();
 
-// 🔹 Configuración de CORS mejorada
+const allowedOrigins = [
+    "https://agustindc09.github.io",
+    "http://localhost:3000",
+    "http://127.0.0.1:5500"
+];
+
+// ✅ Aplicar CORS a todas las rutas
 app.use(cors({
-    origin: ["https://agustindc09.github.io", "http://localhost:3000"],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
 
-app.use(express.json());
-
-// 🔹 Middleware adicional para manejar CORS correctamente en navegadores antiguos
+// ✅ Middleware para asegurarse de que cada respuesta incluya los headers de CORS
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://agustindc09.github.io");
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin);
+    } else {
+        res.header("Access-Control-Allow-Origin", "*"); // ✅ Permitir todos los orígenes como fallback
+    }
+
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+
+    // ✅ Responder directamente a preflight requests (OPTIONS)
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+
     next();
 });
+
+
+app.use(express.json());
+
+
 
 // ✅ Configuración de Mercado Pago con Access Token de producción
 mercadopago.configurations = {
     access_token: process.env.MP_ACCESS_TOKEN
 };
 
-// 🔹 Ruta para generar pagos (POST)
-app.post('/crear-pago', async (req, res) => {
+// ✅ Aplicar CORS específicamente en `crear-pago`
+app.post('/crear-pago', cors(), async (req, res) => {
     console.log("📩 Petición recibida en /crear-pago con body:", req.body);
 
     try {
@@ -47,7 +69,7 @@ app.post('/crear-pago', async (req, res) => {
                     quantity: parseInt(quantity)
                 }
             ],
-            notification_url: "https://backend-beautymoon.onrender.com/webhook", // ✅ URL de notificación ajustada
+            notification_url: "https://backend-beautymoon.onrender.com/webhook",
             back_urls: {
                 success: "https://tusitio.com/success",
                 failure: "https://tusitio.com/failure",
@@ -86,7 +108,7 @@ app.post('/webhook', async (req, res) => {
     console.log("🔹 Webhook recibido:", req.body);
 
     try {
-        const paymentId = req.body.data.id; // 🔹 ID del pago
+        const paymentId = req.body.data.id;
 
         const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
             method: "GET",
@@ -98,7 +120,6 @@ app.post('/webhook', async (req, res) => {
         const paymentData = await response.json();
         console.log("✅ Detalles del pago:", paymentData);
 
-        // ✅ Guardar estado del pago en la base de datos
         await sequelize.query(
             "INSERT INTO pagos (id_pago, estado, monto) VALUES (?, ?, ?)",
             {
