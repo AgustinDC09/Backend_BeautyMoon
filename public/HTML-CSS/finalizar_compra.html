@@ -9,6 +9,7 @@
     <meta name="description" content="Tienda online de maquillaje, cuidado para la piel y perfumes">
     <meta name="keywords" content="Maquillaje, cuidado para la piel, perfumes, cosméticos, belleza">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="contenedor-principal">
@@ -16,172 +17,194 @@
             <h1>FINALIZAR COMPRA</h1>
             <div class="contenido-pago">
                 <div class="formulario-pago">
-                    <div class="bloque-seccion">
-                        <h2>1 - DATOS PERSONALES</h2>
-                        <div class="grupo-formulario">
-                            <label for="email">Correo electrónico*</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="fila-formulario">
-                            <div class="grupo-formulario mitad-ancho">
-                                <label for="nombre">Nombre*</label>
-                                <input type="text" id="nombre" name="nombre" required>
+                    <div class="bloque-seccion" id="seccion-datos-personales">
+                        <h2>1 - DATOS PERSONALES <i class="fas fa-chevron-down flecha-icono"></i></h2>
+                        <div class="contenido-colapsable activo">
+                            <div class="grupo-formulario">
+                                <label for="email">Correo electrónico*</label>
+                                <input type="email" id="email" name="email" required>
                             </div>
-                            <div class="grupo-formulario mitad-ancho">
-                                <label for="apellidos">Apellidos</label>
-                                <input type="text" id="apellidos" name="apellidos" required>
-                            </div>
-                        </div>
-                        <div class="fila-formulario">
-                            <div class="grupo-formulario mitad-ancho">
-                                <label for="dni">DNI*</label>
-                                <input type="text" id="dni" name="dni" required>
-                            </div>
-                            <div class="grupo-formulario mitad-ancho">
-                                <label for="telefono">Teléfono / Móvil*</label>
-                                <input type="tel" id="telefono" name="telefono" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-continuar">CONTINUAR</button>
-                    </div>
-
-                    <div class="bloque-seccion">
-                        <h2>2 - ENVÍO O RETIRO</h2>
-                        <div class="opciones-envio-retiro">
-                            <button class="boton-opcion-envio activo" id="btn-domicilio">Enviar a domicilio</button>
-                            <button class="boton-opcion-envio" id="btn-retiro">Retirar por un punto</button>
-                        </div>
-
-                        <div class="seccion-envio-domicilio">
-                            <div class="sub-seccion">
-                                <h3>Método de entrega</h3>
-                            </div>
-
-                            <div class="sub-seccion">
-                                <h3>Completa tu dirección de entrega</h3>
-                                <div class="direccion-actual">
-                                    <span>Mendoza - <a href="#" class="link-cambiar">Cambiar</a></span>
+                            <div class="fila-formulario">
+                                <div class="grupo-formulario mitad-ancho">
+                                    <label for="nombre">Nombre*</label>
+                                    <input type="text" id="nombre" name="nombre" required>
                                 </div>
-                                <div class="fila-formulario">
-                                    <div class="grupo-formulario mitad-ancho">
-                                        <label for="calle">Calle*</label>
-                                        <input type="text" id="calle" name="calle" required>
-                                    </div>
-                                    <div class="grupo-formulario mitad-ancho">
-                                        <label for="numero">Número*</label>
-                                        <input type="text" id="numero" name="numero" required>
-                                    </div>
-                                </div>
-                                <div class="fila-formulario">
-                                    <div class="grupo-formulario mitad-ancho">
-                                        <label for="piso-depto">Piso / Departamento</label>
-                                        <input type="text" id="piso-depto" name="piso-depto">
-                                    </div>
-                                    <div class="grupo-formulario mitad-ancho">
-                                        <label for="ciudad">Ciudad *</label>
-                                        <select id="ciudad" name="ciudad" required>
-                                            <option value="Mendoza" selected>Mendoza</option>
-                                        </select>
-                                    </div>
+                                <div class="grupo-formulario mitad-ancho">
+                                    <label for="apellidos">Apellidos*</label>
+                                    <input type="text" id="apellidos" name="apellidos" required>
                                 </div>
                             </div>
-
-                            <div class="sub-seccion">
-                                <h3>¿Quién recibe el pedido?</h3>
-                                <div class="grupo-formulario">
-                                    <input type="text" id="recibe-pedido" name="recibe-pedido" required>
+                            <div class="fila-formulario">
+                                <div class="grupo-formulario mitad-ancho">
+                                    <label for="dni">DNI*</label>
+                                    <input type="text" id="dni" name="dni" required>
+                                </div>
+                                <div class="grupo-formulario mitad-ancho">
+                                    <label for="telefono">Teléfono / Móvil*</label>
+                                    <input type="tel" id="telefono" name="telefono" required>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="seccion-retiro-punto" style="display: none;">
-                            <div class="campo-codigo-postal">
-                                <label for="codigo-postal">Código postal*</label>
-                                <input type="text" id="codigo-postal" name="codigo-postal" class="input-error" required>
-                                <p class="mensaje-error">No sé mi código postal</p>
-                            </div>
+                            <button type="button" class="boton-continuar" data-target="seccion-envio-retiro">CONTINUAR</button>
                         </div>
                     </div>
 
-                    <div class="bloque-seccion">
-                        <h2>3 - PAGO</h2>
-                        <button class="btn-giftcard">Utilizar GiftCard</button>
-                        <div class="opciones-pago">
-                            <div class="opcion-pago seleccionado">
-                                <img src="img/tarjeta_credito.png" alt="Tarjeta de crédito">
-                                <p>Tarjeta de crédito</p>
+                    <div class="bloque-seccion colapsado" id="seccion-envio-retiro">
+                        <h2>2 - ENVÍO O RETIRO <i class="fas fa-chevron-down flecha-icono"></i></h2>
+                        <div class="contenido-colapsable">
+                            <div class="opciones-envio-retiro">
+                                <button class="boton-opcion-envio activo" id="btn-domicilio">Enviar a domicilio</button>
+                                <button class="boton-opcion-envio" id="btn-retiro">Retirar por un punto</button>
                             </div>
-                            <div class="opcion-pago">
-                                <img src="img/tarjeta_debito.png" alt="Tarjeta de débito">
-                                <p>Tarjeta de débito</p>
+
+                            <div class="seccion-envio-domicilio">
+                                <div class="sub-seccion">
+                                    <h3>Método de entrega</h3>
+                                </div>
+
+                                <div class="sub-seccion">
+                                    <div class="grupo-formulario">
+                                        <label for="codigo-postal-domicilio">Código postal*</label>
+                                        <input type="text" id="codigo-postal-domicilio" name="codigo-postal-domicilio" required>
+                                        <p class="mensaje-error mensaje-error-cp"><a href="#">No sé mi código postal</a></p>
+                                    </div>
+                                    <div class="campos-direccion-ocultos">
+                                        <div class="fila-formulario">
+                                            <div class="grupo-formulario mitad-ancho">
+                                                <label for="calle">Calle*</label>
+                                                <input type="text" id="calle" name="calle" required>
+                                            </div>
+                                            <div class="grupo-formulario mitad-ancho">
+                                                <label for="numero">Número*</label>
+                                                <input type="text" id="numero" name="numero" required>
+                                            </div>
+                                        </div>
+                                        <div class="fila-formulario">
+                                            <div class="grupo-formulario mitad-ancho">
+                                                <label for="piso-depto">Piso / Departamento</label>
+                                                <input type="text" id="piso-depto" name="piso-depto">
+                                            </div>
+                                            <div class="grupo-formulario mitad-ancho">
+                                                <label for="ciudad">Provincia *</label>
+                                                <select id="ciudad" name="ciudad" required>
+                                                    <option value="Mendoza" selected>Mendoza</option>
+                                                    <option value="San Luis">San Luis</option>
+                                                    <option value="San Juan">San Juan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sub-seccion">
+                                    <h3>¿Quién recibe el pedido?</h3>
+                                    <div class="grupo-formulario campos-direccion-ocultos">
+                                        <input type="text" id="recibe-pedido" name="recibe-pedido" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="opcion-pago">
-                                <img src="img/mercado_pago.png" alt="Mercado Pago">
-                                <p>Mercado Pago</p>
+
+                            <div class="seccion-retiro-punto">
+                                <div class="sub-seccion">
+                                    <h3>Punto de Retiro</h3>
+                                    <div class="grupo-formulario">
+                                        <label for="punto-retiro-nombre">Nombre del Punto de Retiro*</label>
+                                        <input type="text" id="punto-retiro-nombre" name="punto-retiro-nombre" required>
+                                    </div>
+                                    <div class="grupo-formulario">
+                                        <label for="punto-retiro-direccion">Dirección del Punto de Retiro*</label>
+                                        <input type="text" id="punto-retiro-direccion" name="punto-retiro-direccion" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="opcion-pago">
-                                <img src="img/modo.png" alt="MODO">
-                                <p>MODO</p>
+                            <button type="button" class="boton-continuar" data-target="seccion-pago">CONTINUAR</button>
+                        </div>
+                    </div>
+
+                    <div class="bloque-seccion colapsado" id="seccion-pago">
+                        <h2>3 - PAGO <i class="fas fa-chevron-down flecha-icono"></i></h2>
+                        <div class="contenido-colapsable">
+                            <button class="boton-giftcard">Utilizar GiftCard</button>
+                            <div class="opciones-pago">
+                                <div class="opcion-pago seleccionado" data-payment="credit">
+                                    <img src="img/tarjeta_credito.png" alt="Tarjeta de crédito">
+                                    <p>Tarjeta de crédito</p>
+                                </div>
+                                <div class="opcion-pago" data-payment="debit">
+                                    <img src="img/tarjeta_debito.png" alt="Tarjeta de débito">
+                                    <p>Tarjeta de débito</p>
+                                </div>
+                                <div class="opcion-pago" data-payment="mercado-pago">
+                                    <img src="img/mercado_pago.png" alt="Mercado Pago">
+                                    <p>Mercado Pago</p>
+                                </div>
                             </div>
-                            <div class="opcion-pago">
-                                <img src="img/google_pay.png" alt="Google Pay">
-                                <p>Google Pay</p>
-                            </div>
-                        </div>
-                        <div class="logos-tarjetas">
-                            <img src="img/mastercard.png" alt="Mastercard">
-                            <img src="img/visa.png" alt="Visa">
-                        </div>
-                        <div class="grupo-formulario">
-                            <label for="numero-tarjeta">Número</label>
-                            <input type="text" id="numero-tarjeta" name="numero-tarjeta" required>
-                        </div>
-                        <div class="grupo-formulario">
-                            <label for="cuotas-disponibles">Cuotas disponibles:</label>
-                            <select id="cuotas-disponibles" name="cuotas-disponibles">
-                                <option value="1">Total - $ </option>
-                            </select>
-                        </div>
-                        <div class="grupo-formulario">
-                            <label for="nombre-tarjeta">Nombre y Apellido como figura en la tarjeta</label>
-                            <input type="text" id="nombre-tarjeta" name="nombre-tarjeta" required>
-                        </div>
-                        <div class="fila-formulario">
-                            <div class="grupo-vencimiento-y-seguridad">
-                                <div class="grupo-formulario ancho-tercio">
-                                    <label for="fecha-vencimiento-mm">Fecha de Vencimiento</label>
-                                    <select id="fecha-vencimiento-mm" name="fecha-vencimiento-mm">
-                                        <option value="">MM</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
+                            <div class="campos-formulario-pago">
+                                <div class="grupo-formulario campo-tarjeta-comun">
+                                    <label for="numero-tarjeta">Número de Tarjeta*</label>
+                                    <input type="text" id="numero-tarjeta" name="numero-tarjeta" required>
+                                </div>
+                                <div class="grupo-formulario campo-tarjeta-comun">
+                                    <label for="nombre-tarjeta">Nombre y Apellido como figura en la tarjeta*</label>
+                                    <input type="text" id="nombre-tarjeta" name="nombre-tarjeta" required>
+                                </div>
+                                <div class="fila-formulario campo-tarjeta-comun">
+                                    <div class="grupo-vencimiento-y-seguridad">
+                                        <div class="grupo-formulario ancho-tercio">
+                                            <label for="fecha-vencimiento-mm">Fecha de Vencimiento*</label>
+                                            <select id="fecha-vencimiento-mm" name="fecha-vencimiento-mm" required>
+                                                <option value="">MM</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                        <div class="grupo-formulario ancho-tercio">
+                                            <select id="fecha-vencimiento-aa" name="fecha-vencimiento-aa" required>
+                                                <option value="">AA</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                            </select>
+                                        </div>
+                                        <div class="grupo-formulario ancho-tercio">
+                                            <label for="codigo-seguridad">Código de Seguridad*</label>
+                                            <input type="text" id="codigo-seguridad" name="codigo-seguridad" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grupo-formulario campo-tarjeta-comun">
+                                    <label for="dni-pago">DNI*</label>
+                                    <input type="text" id="dni-pago" name="dni-pago" required>
+                                </div>
+
+                                <div class="grupo-formulario campo-solo-credito">
+                                    <label for="cuotas-disponibles">Cuotas disponibles:</label>
+                                    <select id="cuotas-disponibles" name="cuotas-disponibles">
+                                        <option value="1">1 cuota sin interés</option>
+                                        <option value="3">3 cuotas sin interés</option>
+                                        <option value="6">6 cuotas con interés</option>
                                     </select>
                                 </div>
-                                <div class="grupo-formulario ancho-tercio">
-                                    <select id="fecha-vencimiento-aa" name="fecha-vencimiento-aa">
-                                        <option value="">AA</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                    </select>
-                                </div>
-                                <div class="grupo-formulario ancho-tercio">
-                                    <label for="codigo-seguridad">Código de Seguridad</label>
-                                    <input type="text" id="codigo-seguridad" name="codigo-seguridad" required>
-                                </div>
                             </div>
+                            <button type="submit" class="boton-finalizar">FINALIZAR COMPRA</button>
                         </div>
                     </div>
                 </div>
@@ -231,12 +254,13 @@
                     </div>
                     <div class="opciones-checkbox">
                         <label>
-                            <input type="checkbox"> Acepto los <a href=""> Términos y Condiciones</a>
+                            <input type="checkbox" required> Acepto los <a href="#"> Términos y Condiciones</a>
                         </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="finalizar_compra.js"></script>
 </body>
 </html>
