@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const mercadopago = require('mercadopago');
+const usuarioRoutes = require('./routes/usuarioRoutes'); // 🧠 Nueva línea
 
 const app = express();
 
@@ -12,7 +13,7 @@ const allowedOrigins = [
     "http://127.0.0.1:5500"
 ];
 
-// ✅ Aplicar CORS a todas las rutas
+// CORS general
 app.use(cors({
     origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -20,20 +21,18 @@ app.use(cors({
     credentials: true
 }));
 
-// ✅ Middleware para asegurarse de que cada respuesta incluya los headers de CORS
 app.use((req, res, next) => {
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.header("Access-Control-Allow-Origin", origin);
     } else {
-        res.header("Access-Control-Allow-Origin", "*"); // ✅ Permitir todos los orígenes como fallback
+        res.header("Access-Control-Allow-Origin", "*");
     }
 
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.header("Access-Control-Allow-Credentials", "true");
 
-    // ✅ Responder directamente a preflight requests (OPTIONS)
     if (req.method === "OPTIONS") {
         return res.sendStatus(200);
     }
@@ -41,38 +40,16 @@ app.use((req, res, next) => {
     next();
 });
 
-
 app.use(express.json());
 
-app.post("/usuarios/registro", async (req, res) => {
-    const { username, email, password } = req.body;
+// 💡 Acá se montan las rutas de usuarios
+app.use("/usuarios", usuarioRoutes);
 
-    if (!username || !email || !password) {
-        return res.status(400).json({ error: "Faltan campos obligatorios." });
-    }
-
-    try {
-        await sequelize.query(
-            "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)",
-            {
-                replacements: [username, email, password],
-                type: sequelize.QueryTypes.INSERT
-            }
-        );
-        res.status(201).json({ mensaje: "Usuario registrado exitosamente" });
-    } catch (error) {
-        console.error("❌ Error al registrar usuario:", error.message);
-        res.status(500).json({ error: "Error interno del servidor" });
-    }
-});
-
-
-// ✅ Configuración de Mercado Pago con Access Token de producción
+// === Mercado Pago ===
 mercadopago.configurations = {
     access_token: process.env.MP_ACCESS_TOKEN
 };
 
-// ✅ Aplicar CORS específicamente en `crear-pago`
 app.post('/crear-pago', cors(), async (req, res) => {
     console.log("📩 Petición recibida en /crear-pago con body:", req.body);
 
@@ -84,11 +61,7 @@ app.post('/crear-pago', cors(), async (req, res) => {
 
         const preference = {
             items: [
-                {
-                    title,
-                    unit_price: parseFloat(price),
-                    quantity: parseInt(quantity)
-                }
+                { title, unit_price: parseFloat(price), quantity: parseInt(quantity) }
             ],
             notification_url: "https://backend-beautymoon.onrender.com/webhook",
             back_urls: {
@@ -98,8 +71,6 @@ app.post('/crear-pago', cors(), async (req, res) => {
             },
             auto_return: "approved"
         };
-
-        console.log("🔹 Creando preferencia de pago...");
 
         const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
             method: "POST",
@@ -111,7 +82,7 @@ app.post('/crear-pago', cors(), async (req, res) => {
         });
 
         if (!response.ok) {
-            throw new Error(`Error en la API de Mercado Pago: ${response.status} - ${response.statusText}`);
+            throw new Error(`Error en la API de Mercado Pago: ${response.statusText}`);
         }
 
         const data = await response.json();
@@ -124,7 +95,7 @@ app.post('/crear-pago', cors(), async (req, res) => {
     }
 });
 
-// 🔹 Ruta de webhook para recibir notificaciones de pago y registrar en la BD
+// === Webhook
 app.post('/webhook', async (req, res) => {
     console.log("🔹 Webhook recibido:", req.body);
 
@@ -156,7 +127,7 @@ app.post('/webhook', async (req, res) => {
     }
 });
 
-// 🔹 Configuración de puerto
+// === Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`📡 Servidor escuchando en Render: https://backend-beautymoon.onrender.com`);
