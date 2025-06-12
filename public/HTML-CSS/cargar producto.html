@@ -1,0 +1,37 @@
+<head>
+    <link rel="stylesheet" href="cargar producto.css">
+    <meta charset="UTF-8">
+    <title>BEAUTY MOON</title>
+</head>
+<body>
+   
+
+    <form id="productForm">
+      <h1 style="text-align: center; margin-bottom: 0.5rem;">BEAUTY MOON</h1>
+      <h2 style="text-align:center;">Subir Nuevo Producto</h2>
+        <label for="producto">Seleccionar un producto:</label>
+        <select id="producto" required>
+            <option value="" disabled selected>Elige un producto</option>
+            <option value="serum">Serum facial hidratante</option>
+            <option value="labial">Labial mate de larga duración</option>
+            <option value="sombras">Paleta de sombras neutras</option>
+            <option value="crema">Crema antiarrugas con colágeno</option>
+            <option value="delineador">Delineador líquido resistente al agua</option>
+            <option value="base">Base de maquillaje con FPS 30</option>
+            <option value="aceite">Aceite nutritivo para el cabello</option>
+            <option value="mascara">Máscara de pestañas volumen extremo</option>
+            <option value="esencia">Esencia de ácido hialurónico</option>
+            <option value="exfoliante">Exfoliante facial con café y azúcar</option>
+        </select>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" step="0.01" required>
+
+        <label for="imagen">Imagen del producto:</label>
+        <input type="file" id="imagen" accept="image/*" required>
+
+        <img id="preview" src="#" alt="Vista previa" style="display: none;">
+
+        <button type="submit">Subir Producto</button>
+    </form>
+</body>

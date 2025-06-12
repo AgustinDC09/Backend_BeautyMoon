@@ -1,0 +1,171 @@
+<html lang="es">
+<head>
+  <title>Beauty Moon</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/beauty moon.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tienda online de maquillaje, cuidado para la piel y perfumes">
+  <meta name="keywords" content="Maquillaje, cuidado para la piel, perfumes, cosméticos, belleza">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <!-- Menú lateral -->
+<nav class="menu-lateral" id="menu">
+  <div class="cerrar-menu" id="cerrar-menu">&times;</div>
+  <ul>
+    <li><a href="#">Contactos</a></li>
+    <li id="agregar-producto" style="display: none;"><a href="cargar producto.html">Agregar Producto</a></li>
+    <button id="boton-vendedor" class="boton-vendedor"> aaa </button>      
+  </ul>
+
+  
+</nav>
+
+        <div class="icono-menu" id="icono-menu">&#9776;</div>
+        <div style="display:flex; align-items: center;">
+            <img src="img/beauty moon.png" alt="Logo de Beauty Moon">
+            <h1>Beauty Moon</h1>
+        </div>
+
+        <div class="encabezado-derecha" style="display: flex; align-items: center;">
+            <div id="barra-busqueda">
+                <input type="text" id="entrada-busqueda" placeholder="Buscar productos...">
+                <button id="boton-buscar"><img src="img/buscador.png"></button>
+            </div>
+            <button class="boton-promociones" style="border-radius: 0;">PROMOS</button>
+            <a href="carrito.html" class="boton-carrito">
+                <img src="img/carrito.png" alt="Carrito de compras">
+            </a>
+            <button class="boton-inicio"><a href="registro.html">Iniciar Sesión</a></button>
+        </div>
+    </header>
+        <nav class="navegacion-principal">
+            <ul class="categorias-principales">
+                <li>
+                    <a href="#" class="titulo-categoria">MARCAS</a>
+                    <ul class="menu-desplegable-horizontal">
+                        <li><a href="#">NATURA</a></li>
+                        <li><a href="#">AVON</a></li>
+                        <li><a href="#">MARY KAY</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="titulo-categoria">FRAGANCIAS</a>
+                    <ul class="menu-desplegable-horizontal">
+                        <li><a href="#">FEMENINAS</a></li>
+                        <li><a href="#">MASCULINAS</a></li>
+                        <li><a href="#">UNISEX</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="titulo-categoria">MAQUILLAJE</a>
+                    <ul class="menu-desplegable-horizontal">
+                        <li><a href="#">LABIOS</a></li>
+                        <li><a href="#">CEJAS</a></li>
+                        <li><a href="#">DELINEADOR</a></li>
+                        <li><a href="#">PESTAÑAS</a></li>
+                        <li><a href="#">PREBASE</a></li>
+                        <li><a href="#">COLORETE</a></li>
+                        <li><a href="#">BASE LÍQUIDA</a></li>
+                        <li><a href="#">BASE COMPACTA</a></li>
+                        <li><a href="#">CORRECTOR</a></li>
+                        <li><a href="#">POLVOS</a></li>
+                        <li><a href="#">SOMBRAS</a></li>
+                        <li><a href="#">VER TODO</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="titulo-categoria">TRATAMIENTO</a>
+                    <ul class="menu-desplegable-horizontal">
+                        <li><a href="#">CORPORAL</a></li>
+                        <li><a href="#">OJOS</a></li>
+                        <li><a href="#">SOLAR</a></li>
+                        <li><a href="#">LIMPIEZA</a></li>
+                        <li><a href="#">UÑAS</a></li>
+                        <li><a href="#">VER TODO</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="titulo-categoria">CAPILAR</a>
+                    <ul class="menu-desplegable-horizontal">
+                        <li><a href="#">SHAMPOO</a></li>
+                        <li><a href="#">ACONDICIONADOR</a></li>
+                        <li><a href="#">MASCARILLA</a></li>
+                        <li><a href="#">PROTECTOR TÉRMICO</a></li>
+                        <li><a href="#">SÉRUMS Y ACEITES</a></li>
+                        <li><a href="#">TRATAMIENTO</a></li>
+                        <li><a href="#">VER TODO</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <img class="promocion" src="img/hotsale.png" alt="Promoción Hot Sale">
+    <section id="lista-productos" class="productos">
+  <!-- Aquí se insertarán los productos cargados dinámicamente -->
+</section>
+  <script src="menu.js"></script>
+</body>
+<script>
+  const iconoMenu = document.getElementById('icono-menu');
+  const menu = document.getElementById('menu');
+  const cerrarMenu = document.getElementById('cerrar-menu');
+
+  iconoMenu.addEventListener('click', () => {
+    menu.classList.toggle('abierto');
+  });
+
+  cerrarMenu.addEventListener('click', () => {
+    menu.classList.remove('abierto');
+  });
+
+  // Mostrar el enlace si el usuario es vendedor
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('esVendedor') === 'true') {
+      const agregar = document.getElementById('agregar-producto');
+      if (agregar) agregar.style.display = 'block';
+    }
+  });
+
+  // Función que simula que el usuario elige ser vendedor
+    function elegirVendedor() {
+    localStorage.setItem('esVendedor', 'true');
+    alert('¡Ahora eres vendedor!');
+    location.reload(); // Recarga la página para aplicar cambios
+  }
+
+  // Mostrar productos guardados (SIN BACK)
+  document.addEventListener('DOMContentLoaded', () => {
+    const contenedor = document.getElementById('lista-productos');
+    const productos = JSON.parse(localStorage.getItem('productos')) || [];
+
+    productos.forEach(producto => {
+      const card = document.createElement('div');
+      card.className = 'producto-card';
+      card.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+        <h3 class="producto-nombre">${producto.nombre}</h3>
+        <p class="producto-categoria">${producto.categoria}</p>
+        <p class="producto-precio">$${parseFloat(producto.precio).toFixed(2)}</p>
+      `;
+      contenedor.appendChild(card);
+    });
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const contenedor = document.getElementById('listado-productos');
+    const productos = JSON.parse(localStorage.getItem('productos')) || [];
+
+    productos.forEach(p => {
+      const productoHTML = `
+        <div class="producto">
+          <img src="${p.imagen}" alt="${p.nombre}" width="100">
+          <h3>${p.nombre}</h3>
+          <p>$${p.precio}</p>
+        </div>
+      `;
+      contenedor.innerHTML += productoHTML;
+    });
+  });
+</script>

@@ -44,6 +44,27 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+app.post("/usuarios/registro", async (req, res) => {
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+        return res.status(400).json({ error: "Faltan campos obligatorios." });
+    }
+
+    try {
+        await sequelize.query(
+            "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)",
+            {
+                replacements: [username, email, password],
+                type: sequelize.QueryTypes.INSERT
+            }
+        );
+        res.status(201).json({ mensaje: "Usuario registrado exitosamente" });
+    } catch (error) {
+        console.error("❌ Error al registrar usuario:", error.message);
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+});
 
 
 // ✅ Configuración de Mercado Pago con Access Token de producción
