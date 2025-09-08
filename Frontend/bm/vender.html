@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vender - Beauty Moon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-moon"></i>
+                <span>Beauty Moon</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="vendors.html" class="nav-link">Vendedores</a>
+                <a href="productos.html" class="nav-link">Productos</a>
+                <a href="vender.html" class="nav-link active">Vender</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn-icon" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="btn-icon">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar productos o vendedores..." id="searchInput">
+                <button class="close-search" id="closeSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="seller-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Convierte tu Pasión en Negocio</h1>
+                <p class="hero-subtitle">Únete a Beauty Moon y lleva tu negocio de productos Avón al mundo digital. Crea tu puesto virtual y llega a miles de clientes.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Vendedores Activos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25K+</div>
+                        <div class="stat-label">Clientes Potenciales</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">0%</div>
+                        <div class="stat-label">Comisión de Registro</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Por qué Vender con Beauty Moon?</h2>
+                <p class="section-subtitle">Descubre todas las ventajas de tener tu puesto digital</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Tu Puesto Digital</h3>
+                    <p>Crea tu propio espacio personalizado donde mostrar todos tus productos Avón de manera profesional.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Más Clientes</h3>
+                    <p>Accede a una base de más de 25,000 clientes potenciales que buscan productos de belleza auténticos.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Aumenta tus Ventas</h3>
+                    <p>Nuestros vendedores reportan un aumento promedio del 150% en sus ventas mensuales.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Gestión Fácil</h3>
+                    <p>Administra tu inventario, pedidos y clientes desde cualquier dispositivo, en cualquier momento.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Pagos Seguros</h3>
+                    <p>Sistema de pagos integrado y seguro. Recibe tus ganancias directamente en tu cuenta bancaria.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Nuestro equipo de soporte está disponible para ayudarte en cada paso de tu crecimiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="registration-section">
+        <div class="container">
+            <div class="registration-content">
+                <div class="registration-info">
+                    <h2>Comienza Hoy Mismo</h2>
+                    <p>Regístrate gratis y configura tu puesto digital en menos de 10 minutos.</p>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Regístrate</h4>
+                                <p>Completa el formulario con tu información básica</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Configura tu Puesto</h4>
+                                <p>Personaliza tu espacio y sube tus productos</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Comienza a Vender</h4>
+                                <p>¡Tu puesto estará listo para recibir clientes!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="registration-form">
+                    <form id="sellerRegistrationForm">
+                        <h3>Registro de Vendedor</h3>
+                        <div class="form-group">
+                            <label for="fullName">Nombre Completo *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Ubicación *</label>
+                            <select id="location" name="location" required>
+                                <option value="">Selecciona tu zona</option>
+                                <option value="centro">Centro</option>
+                                <option value="zona-norte">Zona Norte</option>
+                                <option value="zona-sur">Zona Sur</option>
+                                <option value="zona-este">Zona Este</option>
+                                <option value="zona-oeste">Zona Oeste</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experiencia con Avón *</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Selecciona tu experiencia</option>
+                                <option value="nuevo">Nuevo vendedor</option>
+                                <option value="1-6-meses">1-6 meses</option>
+                                <option value="6-12-meses">6-12 meses</option>
+                                <option value="1-2-años">1-2 años</option>
+                                <option value="mas-2-años">Más de 2 años</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="specialties">Especialidades (selecciona todas las que apliquen)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="specialties" value="maquillaje">
+                                    <span class="checkmark"></span>
+                                    Maquillaje
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="specialties" value="fragancias">
+                                    <span class="checkmark"></span>
+                                    Fragancias
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="specialties" value="cuidado-piel">
+                                    <span class="checkmark"></span>
+                                    Cuidado de la Piel
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="specialties" value="cuidado-cabello">
+                                    <span class="checkmark"></span>
+                                    Cuidado del Cabello
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="specialties" value="accesorios">
+                                    <span class="checkmark"></span>
+                                    Accesorios
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span class="checkmark"></span>
+                                Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Registrarme como Vendedor</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Historias de Éxito</h2>
+                <p class="section-subtitle">Conoce a algunos de nuestros vendedores más exitosos</p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-avatar">
+                        <img src="public/latina-woman-smiling.png" alt="María González">
+                    </div>
+                    <div class="story-content">
+                        <h4>María González</h4>
+                        <div class="story-location">Centro</div>
+                        <p>"Desde que me uní a Beauty Moon, mis ventas se triplicaron. La plataforma es muy fácil de usar y el soporte es excelente."</p>
+                        <div class="story-stats">
+                            <span class="stat">230 ventas</span>
+                            <span class="stat">4.8★ rating</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-avatar">
+                        <img src="public/hispanic-woman-professional.jpg" alt="Ana Rodríguez">
+                    </div>
+                    <div class="story-content">
+                        <h4>Ana Rodríguez</h4>
+                        <div class="story-location">Zona Norte</div>
+                        <p>"Beauty Moon me permitió llegar a clientes que nunca hubiera conocido. Ahora tengo un negocio próspero y estable."</p>
+                        <div class="story-stats">
+                            <span class="stat">156 ventas</span>
+                            <span class="stat">4.9★ rating</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-avatar">
+                        <img src="public/mature-latina-woman.jpg" alt="Carmen López">
+                    </div>
+                    <div class="story-content">
+                        <h4>Carmen López</h4>
+                        <div class="story-location">Zona Sur</div>
+                        <p>"La mejor decisión que tomé fue unirme a esta plataforma. Mis clientes me encuentran fácilmente y las ventas no paran."</p>
+                        <div class="story-stats">
+                            <span class="stat">445 ventas</span>
+                            <span class="stat">4.7★ rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-moon"></i>
+                        <span>Beauty Moon</span>
+                    </div>
+                    <p class="footer-description">
+                        Conectamos vendedores ambulantes de Avón con clientes que buscan productos de belleza auténticos.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="vendors.html">Vendedores</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="vender.html">Vender</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Para Vendedores</h3>
+                    <ul class="footer-links">
+                        <li><a href="vender.html">Registrarse</a></li>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Comisiones</a></li>
+                        <li><a href="#">Políticas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@beautymoon.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ciudad, País</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Beauty Moon. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

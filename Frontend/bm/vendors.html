@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendedores - Beauty Moon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-moon"></i>
+                <span>Beauty Moon</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="vendors.html" class="nav-link active">Vendedores</a>
+                <a href="#productos" class="nav-link">Productos</a>
+                <a href="#vender" class="nav-link">Vender</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn-icon" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="btn-icon">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar productos o vendedores..." id="searchInput">
+                <button class="close-search" id="closeSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Nuestros Vendedores</h1>
+            <p class="page-subtitle">Descubre vendedores verificados con productos auténticos de Avón</p>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h3>Filtrar Vendedores</h3>
+                <button class="btn btn-outline btn-small" id="clearFilters">Limpiar Filtros</button>
+            </div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Ubicación</label>
+                    <select class="filter-select" id="locationFilter">
+                        <option value="">Todas las ubicaciones</option>
+                        <option value="centro">Centro</option>
+                        <option value="norte">Zona Norte</option>
+                        <option value="sur">Zona Sur</option>
+                        <option value="este">Zona Este</option>
+                        <option value="oeste">Zona Oeste</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Especialidades</label>
+                    <select class="filter-select" id="specialtyFilter">
+                        <option value="">Todas las especialidades</option>
+                        <option value="maquillaje">Maquillaje</option>
+                        <option value="cuidado-piel">Cuidado de la Piel</option>
+                        <option value="fragancias">Fragancias</option>
+                        <option value="cuidado-cabello">Cuidado del Cabello</option>
+                        <option value="accesorios">Accesorios</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Calificación mínima</label>
+                    <select class="filter-select" id="ratingFilter">
+                        <option value="">Cualquier calificación</option>
+                        <option value="4">4+ estrellas</option>
+                        <option value="4.5">4.5+ estrellas</option>
+                        <option value="5">5 estrellas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Ordenar por</label>
+                    <select class="filter-select" id="sortFilter">
+                        <option value="rating">Mejor calificados</option>
+                        <option value="products">Más productos</option>
+                        <option value="recent">Más recientes</option>
+                        <option value="name">Nombre A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendors Grid -->
+    <section class="vendors-page">
+        <div class="container">
+            <div class="vendors-results">
+                <div class="results-header">
+                    <span class="results-count" id="resultsCount">Mostrando 12 de 156 vendedores</span>
+                </div>
+                <div class="vendors-grid" id="allVendorsGrid">
+                    <!-- All vendors will be loaded here by JavaScript -->
+                </div>
+                <div class="pagination">
+                    <button class="btn btn-outline" id="prevPage" disabled>Anterior</button>
+                    <div class="page-numbers">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span>...</span>
+                        <button class="page-btn">13</button>
+                    </div>
+                    <button class="btn btn-outline" id="nextPage">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-moon"></i>
+                        <span>Beauty Moon</span>
+                    </div>
+                    <p class="footer-description">
+                        Conectamos vendedores ambulantes de Avón con clientes que buscan productos de belleza auténticos.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="vendors.html">Vendedores</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#vender">Vender</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Para Vendedores</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Registrarse</a></li>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Comisiones</a></li>
+                        <li><a href="#">Políticas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@beautymoon.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ciudad, País</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Beauty Moon. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
