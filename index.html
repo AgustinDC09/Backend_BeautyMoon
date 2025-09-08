@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beauty Moon - Marketplace de Productos Avón</title>
-    <link rel="stylesheet" href="Frontend/bm/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -31,7 +31,7 @@
                     <span class="badge">3</span>
                 </button>
                 <button class="btn-icon">
-                    <i class="fas fa-shopping-cart"></i>
+                    <a href="carrito.html" class="fas fa-shopping-cart"></a>
                     <span class="badge">2</span>
                 </button>
             </div>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="/placeholder.svg?height=400&width=500" alt="Productos Avón">
+                <img src="public/anti-aging-cream-jar-avon-anew.jpg" alt="Productos Avón">
             </div>
         </div>
     </section>
@@ -109,17 +109,39 @@
     </section>
 
     <!-- Featured Products Section -->
-    <section class="featured-products" id="productos">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Productos Destacados</h2>
-                <p class="section-subtitle">Los productos más populares de nuestros vendedores</p>
-            </div>
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here by JavaScript -->
-            </div>
-        </div>
-    </section>
+        <div class="products-grid" id="productsGrid">
+    <div class="product-card">
+        <img src="public/anti-aging-cream-jar-avon-anew.jpg" alt="Crema anti-edad Avón Anew" />
+        <h3>Crema Anti-Edad Anew</h3>
+        <p>$2.500</p>
+    </div>
+    <div class="product-card">
+        <img src="public/black-cologne-bottle-avon-mesmerize.jpg" alt="Colonia Mesmerize" />
+        <h3>Colonia Mesmerize</h3>
+        <p>$3.200</p>
+    </div>
+    <div class="product-card">
+        <img src="public/black-mascara-tube-avon-supershock.jpg" alt="Máscara Supershock" />
+        <h3>Máscara Supershock</h3>
+        <p>$1.800</p>
+    </div>
+    <div class="product-card">
+        <img src="public/elegant-perfume-bottle-avon-far-away.jpg" alt="Perfume Far Away" />
+        <h3>Perfume Far Away</h3>
+        <p>$3.500</p>
+    </div>
+    <div class="product-card">
+        <img src="public/red-lipstick-avon-cosmetic-product.jpg" alt="Labial Rojo Avón" />
+        <h3>Labial Rojo</h3>
+        <p>$1.200</p>
+    </div>
+    <div class="product-card">
+        <img src="public/sunscreen-bottle-avon-planet-spa.jpg" alt="Protector Solar Planet Spa" />
+        <h3>Protector Solar</h3>
+        <p>$1.500</p>
+    </div>
+    </div>
+
 
     <!-- CTA Section -->
     <section class="cta-section" id="vender">

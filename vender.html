@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vender - Beauty Moon</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" >
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -31,7 +31,7 @@
                     <span class="badge">3</span>
                 </button>
                 <button class="btn-icon">
-                    <i class="fas fa-shopping-cart"></i>
+                    <a href="carrito.html" class="fas fa-shopping-cart"></a>
                     <span class="badge">2</span>
                 </button>
             </div>
@@ -130,116 +130,73 @@
     </section>
 
     <!-- Registration Form -->
-    <section class="registration-section">
-        <div class="container">
-            <div class="registration-content">
-                <div class="registration-info">
-                    <h2>Comienza Hoy Mismo</h2>
-                    <p>Regístrate gratis y configura tu puesto digital en menos de 10 minutos.</p>
-                    <div class="process-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Regístrate</h4>
-                                <p>Completa el formulario con tu información básica</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Configura tu Puesto</h4>
-                                <p>Personaliza tu espacio y sube tus productos</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Comienza a Vender</h4>
-                                <p>¡Tu puesto estará listo para recibir clientes!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="registration-form">
-                    <form id="sellerRegistrationForm">
-                        <h3>Registro de Vendedor</h3>
-                        <div class="form-group">
-                            <label for="fullName">Nombre Completo *</label>
-                            <input type="text" id="fullName" name="fullName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Teléfono *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Ubicación *</label>
-                            <select id="location" name="location" required>
-                                <option value="">Selecciona tu zona</option>
-                                <option value="centro">Centro</option>
-                                <option value="zona-norte">Zona Norte</option>
-                                <option value="zona-sur">Zona Sur</option>
-                                <option value="zona-este">Zona Este</option>
-                                <option value="zona-oeste">Zona Oeste</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="experience">Experiencia con Avón *</label>
-                            <select id="experience" name="experience" required>
-                                <option value="">Selecciona tu experiencia</option>
-                                <option value="nuevo">Nuevo vendedor</option>
-                                <option value="1-6-meses">1-6 meses</option>
-                                <option value="6-12-meses">6-12 meses</option>
-                                <option value="1-2-años">1-2 años</option>
-                                <option value="mas-2-años">Más de 2 años</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="specialties">Especialidades (selecciona todas las que apliquen)</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="specialties" value="maquillaje">
-                                    <span class="checkmark"></span>
-                                    Maquillaje
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="specialties" value="fragancias">
-                                    <span class="checkmark"></span>
-                                    Fragancias
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="specialties" value="cuidado-piel">
-                                    <span class="checkmark"></span>
-                                    Cuidado de la Piel
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="specialties" value="cuidado-cabello">
-                                    <span class="checkmark"></span>
-                                    Cuidado del Cabello
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="specialties" value="accesorios">
-                                    <span class="checkmark"></span>
-                                    Accesorios
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="terms" required>
-                                <span class="checkmark"></span>
-                                Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a>
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-large">Registrarme como Vendedor</button>
-                    </form>
-                </div>
-            </div>
+    <section class="registration-form-section">
+  <div class="container">
+    <form id="sellerRegistrationForm" class="registration-form">
+      <h2>Registro de Vendedor</h2>
+
+      <div class="form-group">
+        <label for="fullName">Nombre Completo *</label>
+        <input type="text" id="fullName" name="fullName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo Electrónico *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Teléfono *</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Ubicación *</label>
+        <select id="location" name="location" required>
+          <option value="">Selecciona tu zona</option>
+          <option value="centro">Centro</option>
+          <option value="zona-norte">Zona Norte</option>
+          <option value="zona-sur">Zona Sur</option>
+          <option value="zona-este">Zona Este</option>
+          <option value="zona-oeste">Zona Oeste</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="experience">Experiencia con Avón *</label>
+        <select id="experience" name="experience" required>
+          <option value="">Selecciona tu experiencia</option>
+          <option value="nuevo">Nuevo vendedor</option>
+          <option value="1-6-meses">1–6 meses</option>
+          <option value="6-12-meses">6–12 meses</option>
+          <option value="1-2-años">1–2 años</option>
+          <option value="mas-2-años">Más de 2 años</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Especialidades (selecciona todas las que apliquen)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="specialties" value="maquillaje"> Maquillaje</label>
+          <label><input type="checkbox" name="specialties" value="fragancias"> Fragancias</label>
+          <label><input type="checkbox" name="specialties" value="cuidado-piel"> Cuidado de la Piel</label>
+          <label><input type="checkbox" name="specialties" value="cuidado-cabello"> Cuidado del Cabello</label>
+          <label><input type="checkbox" name="specialties" value="accesorios"> Accesorios</label>
         </div>
-    </section>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" name="terms" required>
+          Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registrarme como Vendedor</button>
+    </form>
+  </div>
+</section>
+
 
     <!-- Success Stories -->
     <section class="success-stories">
@@ -251,7 +208,7 @@
             <div class="stories-grid">
                 <div class="story-card">
                     <div class="story-avatar">
-                        <img src="public/latina-woman-smiling.png" alt="María González">
+                        <img src="public/middle-aged-woman-vendor-natural-products.jpg" alt="María González">
                     </div>
                     <div class="story-content">
                         <h4>María González</h4>
@@ -265,7 +222,7 @@
                 </div>
                 <div class="story-card">
                     <div class="story-avatar">
-                        <img src="public/hispanic-woman-professional.jpg" alt="Ana Rodríguez">
+                        <img src="public/mature-woman-vendor-professional.jpg" alt="Ana Rodríguez">
                     </div>
                     <div class="story-content">
                         <h4>Ana Rodríguez</h4>
@@ -279,7 +236,7 @@
                 </div>
                 <div class="story-card">
                     <div class="story-avatar">
-                        <img src="public/mature-latina-woman.jpg" alt="Carmen López">
+                        <img src="public/elegant-woman-vendor-perfumes.jpg" alt="Carmen López">
                     </div>
                     <div class="story-content">
                         <h4>Carmen López</h4>
