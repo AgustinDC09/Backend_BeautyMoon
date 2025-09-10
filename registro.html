@@ -35,7 +35,7 @@
         <div class="contenedor-formas">
             <!-- 🔹 Mensaje dinámico de registro -->
             <div id="mensaje-registro" style="display: none; padding: 10px; font-size: 16px; font-weight: bold; text-align: center;"></div>
-
+            
             <form class="registrarse">
                 <h2>Registrarse</h2>
                 <div class="redes-sociales">
@@ -45,22 +45,30 @@
                     <ion-icon name="logo-tiktok"></ion-icon>
                 </div>
                 <span>Use su correo electrónico para registrarse</span>
+
                 <div class="entrada-contenedor">
                     <ion-icon name="person-outline"></ion-icon>
-                    <input type="text" placeholder="Nombre de Usuario">
+                    <input type="text" id="nombreUsuario" placeholder="Nombre de Usuario">
                 </div>
                 <div class="entrada-contenedor">
                     <ion-icon name="mail-outline"></ion-icon>
-                    <input type="text" placeholder="Ingrese su Email">
+                    <input type="text" id="emailUsuario" placeholder="Ingrese su Email">
                 </div>
                 <div class="entrada-contenedor">
                     <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" placeholder="Ingrese su Contraseña">
+                    <input type="password" id="passwordUsuario" placeholder="Ingrese su Contraseña">
                 </div>
                 <label class="checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" id="rolVendedor" name="rolVendedor">
                     Quiero ser vendedor/a
                 </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" id="rolAdmin" name="rolAdmin">
+                    Quiero ser administrador/a
+                </label>
+
+
                 <button class="boton">REGISTRARSE</button>
             </form>
         </div>

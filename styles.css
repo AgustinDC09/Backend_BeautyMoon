@@ -145,6 +145,20 @@ h6 {
   color: var(--primary-color);
 }
 
+.icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.cora-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+
 .badge {
   position: absolute;
   top: -5px;
@@ -376,6 +390,17 @@ h6 {
   margin-bottom: 4rem;
 }
 
+.vendor-photo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+
 .vendor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -387,6 +412,8 @@ h6 {
   background-color: var(--white);
   border-radius: 16px;
   padding: 2rem;
+  max-width: 350px;
+  margin: 0 auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid var(--border-color);
@@ -410,6 +437,14 @@ h6 {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.vendor-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 
 .vendor-info h3 {
   font-size: 1.25rem;
@@ -1291,3 +1326,11 @@ input, select {
   font-size: 0.85rem;
   color: #555;
 }
+
+.product-image {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+

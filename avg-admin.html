@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Administrador</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<h1>Panel de Administrador</h1>
+
+
+
+<!-- Crear nueva vendedora -->
+<h2>Crear Vendedora</h2>
+<input type="text" id="nombreVendedora" placeholder="Nombre">
+<input type="text" id="puestoVendedora" placeholder="Puesto">
+<input type="text" id="imagenVendedora" placeholder="URL de imagen">
+<input type="number" id="calificacionVendedora" placeholder="Calificación (1-5)" min="1" max="5">
+<input type="number" id="productosVendidos" placeholder="Productos vendidos" min="0">
+<button id="crearVendedora">Crear</button>
+
+
+<h2>Vendedoras Actuales</h2>
+<div id="listaVendedoras"></div>
+
+<script src="admin.js"></script>
+
+
+
+</body>
+</html>

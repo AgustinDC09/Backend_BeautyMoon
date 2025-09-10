@@ -63,4 +63,39 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Hubo un problema al intentar recuperar la contraseña.");
         });
     });
+    
+
 });
+document.querySelector('.registrarse').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombreUsuario').value.trim();
+    const email = document.getElementById('emailUsuario').value.trim();
+    const password = document.getElementById('passwordUsuario').value.trim();
+
+    const esVendedor = document.getElementById('rolVendedor').checked;
+    const esAdmin = document.getElementById('rolAdmin').checked;
+
+    // Validar campos obligatorios
+    if (!nombre || !email || !password) {
+        alert("Por favor completá todos los campos antes de seleccionar un rol.");
+        return;
+    }
+
+    // Validar roles
+    if (esVendedor && esAdmin) {
+        alert("No podés ser vendedor y administrador al mismo tiempo. Elegí solo uno.");
+        return;
+    }
+
+    // Redirección según rol
+    if (esVendedor) {
+        window.location.href = 'avg-vendedor.html';
+    } else if (esAdmin) {
+        window.location.href = 'avg-admin.html';
+    } else {
+        alert("Registro exitoso como usuario.");
+        window.location.href = 'index.html';
+    }
+    });
+
