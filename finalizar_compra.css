@@ -488,3 +488,7 @@ input:not(:placeholder-shown):valid, select:valid {
     transform: translateY(0); /*vuelve a la posicion original*/
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /*sombra mas pequeña al estar activo*/
 }
+
+input.error, select.error {
+  border: 2px solid red;
+}

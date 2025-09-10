@@ -36,6 +36,24 @@
                 </button>
             </div>
         </div>
+
+
+        <!-- Search Modal -->
+        <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar productos..." id="searchInput" autocomplete="off"/>
+            <button class="close-search" id="closeSearch">
+                <i class="fas fa-times"></i>
+            </button>
+            </div>
+            <div class="search-results" id="searchResults">
+            <!-- Aquí se inyectarán las tarjetas de producto -->
+            </div>
+        </div>
+        </div>
+
     </header>
 
     <!-- Search Modal -->
@@ -189,7 +207,8 @@
             </div>
         </div>
     </footer>
-
+    <script src="products-sample.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 // Sample data for vendors and products
+
 const vendorsData = [
   {
     id: 1,
@@ -80,8 +81,8 @@ const productsData = [
     name: "Labial Mate Avón True",
     vendor: "María González",
     image: "public/red-lipstick-avon-cosmetic-product.jpg",
-    currentPrice: 15.99,
-    originalPrice: 19.99,
+    currentPrice: 1200,
+    originalPrice: 1500,
     discount: 20,
     inStock: true,
   },
@@ -90,8 +91,8 @@ const productsData = [
     name: "Crema Anti-edad Anew",
     vendor: "Ana Rodríguez",
     image: "public/anti-aging-cream-jar-avon-anew.jpg",
-    currentPrice: 32.5,
-    originalPrice: 42.0,
+    currentPrice: 2500,
+    originalPrice: 3247,
     discount: 23,
     inStock: true,
   },
@@ -100,8 +101,8 @@ const productsData = [
     name: "Perfume Far Away",
     vendor: "Rosa Fernández",
     image: "public/elegant-perfume-bottle-avon-far-away.jpg",
-    currentPrice: 28.99,
-    originalPrice: 35.99,
+    currentPrice: 3500,
+    originalPrice: 4321,
     discount: 19,
     inStock: false,
   },
@@ -110,18 +111,16 @@ const productsData = [
     name: "Máscara de pestañas Avon",
     vendor: "Carmen López",
     image: "public/black-mascara-tube-avon-supershock.jpg",
-    currentPrice: 12.75,
-    originalPrice: 16.5,
+    currentPrice: 1800,
+    originalPrice: 2188,
     discount: 23,
     inStock: true,
   },
-  {
-    id: 5,
-    name: "Protector solar Avon",
+  {    name: "Protector solar Avon",
     vendor: "Isabel Martín",
     image: "public/sunscreen-bottle-avon-planet-spa.jpg",
-    currentPrice: 22.99,
-    originalPrice: 28.99,
+    currentPrice: 1500,
+    originalPrice: 1899,
     discount: 21,
     inStock: true,
   },
@@ -130,14 +129,15 @@ const productsData = [
     name: "colonia negra Avon",
     vendor: "Lucía Herrera",
     image: "public/black-cologne-bottle-avon-mesmerize.jpg",
-    currentPrice: 18.5,
-    originalPrice: 24.99,
+    currentPrice: 3200,
+    originalPrice: 4325,
     discount: 26,
     inStock: true,
   },
 ]
 
 // DOM Elements
+                  // usa estos datos de ejemplo
 const searchBtn = document.getElementById("searchBtn")
 const searchModal = document.getElementById("searchModal")
 const closeSearch = document.getElementById("closeSearch")
@@ -256,7 +256,7 @@ function createProductCard(product) {
                 <div class="product-actions">
                     ${
                       product.inStock
-                        ? '<button class="btn btn-primary">Agregar al Carrito</button>'
+                        ? `<button class="btn btn-primary add-to-cart-btn" data-id="${product.id}">Agregar al Carrito</button>`
                         : '<div class="stock-status out-of-stock">Agotado</div>'
                     }
                 </div>
@@ -426,27 +426,207 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Add some interactive animations
 function addInteractiveAnimations() {
-  // Add hover effects to cards
   document.addEventListener(
     "mouseenter",
     (e) => {
-      if (e.target.closest(".vendor-card") || e.target.closest(".product-card")) {
-        e.target.closest(".vendor-card, .product-card").style.transform = "translateY(-4px)"
+      if (!(e.target instanceof Element)) return;
+
+      const card = e.target.closest(".vendor-card, .product-card");
+      if (card) {
+        card.style.transform = "translateY(-4px)";
       }
     },
-    true,
-  )
+    true
+  );
 
   document.addEventListener(
     "mouseleave",
     (e) => {
-      if (e.target.closest(".vendor-card") || e.target.closest(".product-card")) {
-        e.target.closest(".vendor-card, .product-card").style.transform = "translateY(0)"
+      if (!(e.target instanceof Element)) return;
+
+      const card = e.target.closest(".vendor-card, .product-card");
+      if (card) {
+        card.style.transform = "translateY(0)";
       }
     },
-    true,
-  )
+    true
+  );
 }
 
-// Call animations setup
-document.addEventListener("DOMContentLoaded", addInteractiveAnimations)
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.getElementById("allProductsGrid");
+  const categoryFilter = document.getElementById("categoryFilter");
+  const priceFilter = document.getElementById("priceFilter");
+  const vendorFilter = document.getElementById("vendorFilter");
+  const sortFilter = document.getElementById("productSortFilter");
+  const clearFilters = document.getElementById("clearProductFilters");
+
+  function renderProductos(lista) {
+    if (!grid) return;
+
+    grid.innerHTML = "";
+    lista.forEach(producto => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
+        <div class="product-info">
+          <h4 class="product-name">${producto.nombre}</h4>
+          <p class="product-price">$${producto.precio.toFixed(2)}</p>
+          <p class="product-vendor">Vendedor: ${producto.vendedor}</p>
+          ${producto.descuento ? `<span class="product-discount">${producto.descuento}% OFF</span>` : ""}
+          <button class="btn btn-primary add-to-cart-btn" data-id="${producto.id}">Agregar al Carrito</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    
+  }
+  bindAddToCartButtons();
+
+  function bindAddToCartButtons() {
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const producto = Array.isArray(window.productos)
+        ? window.productos.find(p => p.id == id): null;
+
+        if (producto) {
+          agregarAlCarrito(producto);
+        }
+      });
+    });
+  }
+
+
+  function agregarAlCarrito(producto) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    const existe = carrito.find(p => p.id === producto.id);
+    if (existe) {
+      carrito = carrito.map(p =>
+        p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
+      );
+    } else {
+      carrito.push({
+        id: producto.id,
+        title: producto.nombre,
+        price: producto.precio,
+        image: producto.imagen,
+        cantidad: 1
+      });
+    }
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarContadorCarrito();
+    actualizarTotalCarrito();
+  }
+
+
+  function actualizarContadorCarrito() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalItems = carrito.reduce((sum, p) => sum + p.cantidad, 0);
+    const badge = document.querySelector('.fa-shopping-cart + .badge');
+    if (badge) badge.textContent = totalItems;
+  }
+
+  function actualizarTotalCarrito() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const total = carrito.reduce((sum, p) => sum + p.price * p.cantidad, 0);
+    localStorage.setItem('totalCarrito', total.toFixed(2));
+  }
+
+  function aplicarFiltros() {
+    let filtrados = [...window.productos];
+
+    const categoria = categoryFilter?.value;
+    const precio = priceFilter?.value;
+    const vendedor = vendorFilter?.value;
+    const orden = sortFilter?.value;
+
+    if (categoria) {
+      filtrados = filtrados.filter(p => p.categoria === categoria);
+    }
+
+    if (precio) {
+      const [min, max] = precio.split("-");
+      filtrados = filtrados.filter(p => {
+        if (max) return p.precio >= parseFloat(min) && p.precio <= parseFloat(max);
+        return p.precio >= parseFloat(min);
+      });
+    }
+
+    if (vendedor) {
+      filtrados = filtrados.filter(p => p.vendedor === vendedor);
+    }
+
+    switch (orden) {
+      case "price-low":
+        filtrados.sort((a, b) => a.precio - b.precio);
+        break;
+      case "price-high":
+        filtrados.sort((a, b) => b.precio - a.precio);
+        break;
+      case "discount":
+        filtrados.sort((a, b) => b.descuento - a.descuento);
+        break;
+      case "name":
+        filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        break;
+      default:
+        filtrados.sort((a, b) => b.destacado - a.destacado);
+    }
+
+    renderProductos(filtrados);
+  }
+
+  // Conectar filtros si existen
+  if (categoryFilter) categoryFilter.addEventListener("change", aplicarFiltros);
+  if (priceFilter) priceFilter.addEventListener("change", aplicarFiltros);
+  if (vendorFilter) vendorFilter.addEventListener("change", aplicarFiltros);
+  if (sortFilter) sortFilter.addEventListener("change", aplicarFiltros);
+  if (clearFilters) {
+    clearFilters.addEventListener("click", () => {
+      categoryFilter.value = "";
+      priceFilter.value = "";
+      vendorFilter.value = "";
+      sortFilter.value = "featured";
+      aplicarFiltros();
+    });
+  }
+
+  // Inicializar
+  renderProductos(window.productos);
+  actualizarContadorCarrito();
+});
+window.productos = [];
+
+document.querySelectorAll('.product-card').forEach((card, index) => {
+  const nombre = card.querySelector('h3')?.textContent.trim();
+  const precioTexto = card.querySelector('p')?.textContent.trim().replace('$', '').replace('.', '').replace(',', '.');
+  const precio = parseFloat(precioTexto);
+  const imagen = card.querySelector('img')?.getAttribute('src');
+
+  const producto = {
+    id: String(index + 1),
+    nombre,
+    precio,
+    imagen,
+    vendedor: "Beauty Moon", // o lo que corresponda
+    categoria: "General",     // si querés categorizar
+    descuento: 0,
+    destacado: false
+  };
+
+  window.productos.push(producto);
+
+  // Agregar botón dinámicamente si no existe
+  if (!card.querySelector('.add-to-cart-btn')) {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-primary add-to-cart-btn';
+    btn.textContent = 'Agregar al Carrito';
+    btn.dataset.id = producto.id;
+    card.appendChild(btn);
+  }
+});

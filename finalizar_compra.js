@@ -28,28 +28,45 @@
         continueButtons.forEach(button => {
             button.addEventListener('click', (event) => {
                 const currentSectionContent = event.target.closest('.contenido-colapsable');
-                const currentSectionHeader = currentSectionContent.previousElementSibling; // Obtener el H2
-                const targetSectionId = event.target.dataset.target; // ID de la siguiente sección
+                const requiredFields = currentSectionContent.querySelectorAll('input[required], select[required]');
+                let valid = true;
+
+                requiredFields.forEach(field => {
+                if (field.offsetParent !== null && !field.value.trim()) {
+                    field.classList.add('error');
+                    valid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+                });
+
+                if (!valid) {
+                alert("Por favor, completá los campos obligatorios antes de continuar.");
+                return;
+                }
+
+                // Activar siguiente sección
+                const currentSectionHeader = currentSectionContent.previousElementSibling;
+                const targetSectionId = event.target.dataset.target;
                 const targetSection = document.getElementById(targetSectionId);
 
-                // Desactivar la sección actual
                 currentSectionContent.classList.remove('activo');
                 currentSectionHeader.querySelector('.flecha-icono').classList.remove('fa-chevron-up');
                 currentSectionHeader.querySelector('.flecha-icono').classList.add('fa-chevron-down');
-                currentSectionContent.style.maxHeight = null; // Reiniciar max-height
+                currentSectionContent.style.maxHeight = null;
 
-                // Activar la sección objetivo
                 if (targetSection) {
-                    targetSection.classList.remove('colapsado'); // Asegurarse de que no esté oculto por la clase 'colapsado'
-                    const targetCollapsibleContent = targetSection.querySelector('.contenido-colapsable');
-                    const targetIcon = targetSection.querySelector('.flecha-icono');
+                targetSection.classList.remove('colapsado');
+                const targetCollapsibleContent = targetSection.querySelector('.contenido-colapsable');
+                const targetIcon = targetSection.querySelector('.flecha-icono');
 
-                    targetCollapsibleContent.classList.add('activo');
-                    targetIcon.classList.remove('fa-chevron-down');
-                    targetIcon.classList.add('fa-chevron-up');
+                targetCollapsibleContent.classList.add('activo');
+                targetIcon.classList.remove('fa-chevron-down');
+                targetIcon.classList.add('fa-chevron-up');
                 }
             });
-        });
+            });
+
 
         // --- Lógica de Opciones de Envío/Retiro ---
         const domicilioBtn = document.getElementById('btn-domicilio');
@@ -157,30 +174,187 @@
 
     botonFinalizar.addEventListener('click', async () => {
         const opcionSeleccionada = document.querySelector('.opcion-pago.seleccionado');
-
         if (!opcionSeleccionada) {
             alert("Por favor, selecciona un método de pago.");
             return;
         }
 
         const metodoPago = opcionSeleccionada.dataset.payment;
-        console.log("🔹 Página cargada, ejecutando calcularTotal()...");
-        calcularTotal();  
+
+        // Validar términos y campos obligatorios antes de continuar
+        const checkboxTerminos = document.querySelector('.opciones-checkbox input[type="checkbox"]');
+        if (!checkboxTerminos.checked) {
+            alert("Debes aceptar los Términos y Condiciones.");
+            return;
+        }
+
+        const camposObligatorios = document.querySelectorAll('input[required], select[required]');
+        let valid = true;
+        camposObligatorios.forEach(campo => {
+            if (campo.offsetParent !== null && !campo.value.trim()) {
+            campo.classList.add('error');
+            valid = false;
+            } else {
+            campo.classList.remove('error');
+            }
+        });
+
+        if (!valid) {
+            alert("Por favor, completá todos los campos obligatorios.");
+            return;
+        }
+
+        calcularTotal();
 
         if (metodoPago === 'mercado-pago') {
-            const totalCarrito = localStorage.getItem('totalCarrito');
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            const totalCarrito = carrito.reduce((sum, p) => sum + p.price * p.cantidad, 0);
 
             if (!totalCarrito || parseFloat(totalCarrito) <= 0) {
-                alert("Hubo un problema al calcular el total. Verifica tu carrito.");
-                return;
+            alert("Debes ingresar algún producto a tu carrito");
+            return;
             }
 
-            console.log("🔹 Redirigiendo manualmente a Mercado Pago...");
-
-            // ✅ Simulación de pago con un enlace generado manualmente
             const mercadoPagoURL = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1485254307-a495b8c8-ebe3-47e7-8cf8-893d333ab444`;
-
             window.location.href = mercadoPagoURL;
         }
-    });
+        });
+
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const resumenProductos = document.querySelector(".resumen-productos");
+    const detallesPrecios = document.querySelector(".detalles-precios");
+
+    if (carrito.length === 0) {
+        resumenProductos.innerHTML = `<p class="cantidad-productos">No hay productos en el carrito.</p>`;
+        detallesPrecios.innerHTML = `
+            <div class="fila-precio-total">
+                <span>Total</span>
+                <span class="monto-total">$0</span>
+            </div>
+        `;
+        return;
+    }
+ 
+
+    let subtotal = 0;
+    resumenProductos.innerHTML = `<p class="cantidad-productos">${carrito.length} PRODUCTO${carrito.length > 1 ? 'S' : ''}</p>`;
+
+    carrito.forEach(producto => {
+        subtotal += producto.price * producto.cantidad;
+
+        const item = document.createElement("div");
+        item.className = "item-resumen";
+        item.innerHTML = `
+            <div class="detalles-producto-resumen">
+                <img src="${producto.image}" alt="${producto.title}">
+                <p>${producto.title}</p>
+            </div>
+            <div class="precio-producto-resumen">
+                <p>Cantidad: ${producto.cantidad}</p>
+                <p>$${(producto.price * producto.cantidad).toLocaleString('es-AR')}</p>
+            </div>
+        `;
+        resumenProductos.appendChild(item);
+    });
+
+    detallesPrecios.innerHTML = `
+        <div class="fila-precio">
+            <span>Subtotal</span>
+            <span>$${subtotal.toLocaleString('es-AR')}</span>
+        </div>
+        <div class="fila-precio">
+            <span>Gastos de envío</span>
+            <span>$-</span>
+        </div>
+        <div class="fila-precio">
+            <span>Impuestos Nacionales</span>
+            <span>$-</span>
+        </div>
+        <div class="fila-precio-total">
+            <span>Total</span>
+            <span class="monto-total">$${subtotal.toLocaleString('es-AR')}</span>
+        </div>
+    `;
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btnDomicilio = document.getElementById("btn-domicilio");
+  const btnRetiro = document.getElementById("btn-retiro");
+  const finalizarBtn = document.querySelector(".boton-finalizar");
+  const checkboxTerminos = document.querySelector('.opciones-checkbox input[type="checkbox"]');
+
+  const domicilioFields = document.querySelectorAll(".seccion-envio-domicilio input[required], .seccion-envio-domicilio select[required]");
+  const retiroFields = document.querySelectorAll(".seccion-retiro-punto input[required]");
+  const datosPersonalesFields = document.querySelectorAll("#seccion-datos-personales input[required]");
+  const pagoFields = document.querySelectorAll("#seccion-pago input[required], #seccion-pago select[required]");
+
+  let modoEnvio = "domicilio"; // por defecto
+
+  btnDomicilio.addEventListener("click", () => {
+    modoEnvio = "domicilio";
+  });
+
+  btnRetiro.addEventListener("click", () => {
+    modoEnvio = "retiro";
+  });
+
+  finalizarBtn.addEventListener("click", function (e) {
+    let valid = true;
+
+    // Validar términos y condiciones
+    if (!checkboxTerminos.checked) {
+      alert("Debes aceptar los Términos y Condiciones.");
+      valid = false;
+    }
+
+    // Validar datos personales
+    datosPersonalesFields.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add("error");
+        valid = false;
+      } else {
+        field.classList.remove("error");
+      }
+    });
+
+    // Validar pago
+    pagoFields.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add("error");
+        valid = false;
+      } else {
+        field.classList.remove("error");
+      }
+    });
+
+        // Validar envío o retiro
+        if (modoEnvio === "domicilio") {
+        domicilioFields.forEach(field => {
+            if (!field.value.trim()) {
+            field.classList.add("error");
+            valid = false;
+            } else {
+            field.classList.remove("error");
+            }
+        });
+        } else {
+        retiroFields.forEach(field => {
+            if (!field.value.trim()) {
+            field.classList.add("error");
+            valid = false;
+            } else {
+            field.classList.remove("error");
+            }
+        });
+        }
+
+        if (!valid) {
+        e.preventDefault(); // bloquea el envío
+        }
+    });
+    });
+
+

@@ -59,57 +59,64 @@
         </div>
     </section>
 
+    
+    
     <!-- Filters Section -->
     <section class="filters-section">
-        <div class="container">
-            <div class="filters-header">
-                <h3>Filtrar Vendedores</h3>
-                <button class="btn btn-outline btn-small" id="clearFilters">Limpiar Filtros</button>
-            </div>
-            <div class="filters-grid">
-                <div class="filter-group">
-                    <label class="filter-label">Ubicación</label>
-                    <select class="filter-select" id="locationFilter">
-                        <option value="">Todas las ubicaciones</option>
-                        <option value="centro">Centro</option>
-                        <option value="norte">Zona Norte</option>
-                        <option value="sur">Zona Sur</option>
-                        <option value="este">Zona Este</option>
-                        <option value="oeste">Zona Oeste</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">Especialidades</label>
-                    <select class="filter-select" id="specialtyFilter">
-                        <option value="">Todas las especialidades</option>
-                        <option value="maquillaje">Maquillaje</option>
-                        <option value="cuidado-piel">Cuidado de la Piel</option>
-                        <option value="fragancias">Fragancias</option>
-                        <option value="cuidado-cabello">Cuidado del Cabello</option>
-                        <option value="accesorios">Accesorios</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">Calificación mínima</label>
-                    <select class="filter-select" id="ratingFilter">
-                        <option value="">Cualquier calificación</option>
-                        <option value="4">4+ estrellas</option>
-                        <option value="4.5">4.5+ estrellas</option>
-                        <option value="5">5 estrellas</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">Ordenar por</label>
-                    <select class="filter-select" id="sortFilter">
-                        <option value="rating">Mejor calificados</option>
-                        <option value="products">Más productos</option>
-                        <option value="recent">Más recientes</option>
-                        <option value="name">Nombre A-Z</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="container">
+    <div class="filters-header">
+      <h3>Filtrar Vendedores</h3>
+      <button id="clearFilters" class="btn btn-outline btn-small">
+        Limpiar filtros
+      </button>
+    </div>
+    <div class="filters-grid">
+      <div class="filter-group">
+        <label for="locationFilter">Ubicación</label>
+        <select id="locationFilter" class="filter-select">
+          <option value="">Todas las ubicaciones</option>
+          <option value="Centro">Centro</option>
+          <option value="Zona Norte">Zona Norte</option>
+          <option value="Zona Sur">Zona Sur</option>
+          <option value="Zona Este">Zona Este</option>
+          <option value="Zona Oeste">Zona Oeste</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="specialtyFilter">Especialidad</label>
+        <select id="specialtyFilter" class="filter-select">
+          <option value="">Todas las especialidades</option>
+          <option value="Maquillaje">Maquillaje</option>
+          <option value="Fragancias">Fragancias</option>
+          <option value="Cuidado de la Piel">Cuidado de la Piel</option>
+          <option value="Anti-edad">Anti-edad</option>
+          <option value="Cuidado del Cabello">Cuidado del Cabello</option>
+          <option value="Accesorios">Accesorios</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="ratingFilter">Valoración mínima</label>
+        <select id="ratingFilter" class="filter-select">
+          <option value="">Cualquiera</option>
+          <option value="4.5">4.5+</option>
+          <option value="4.7">4.7+</option>
+          <option value="4.9">4.9+</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sortFilter">Ordenar por</label>
+        <select id="sortFilter" class="filter-select">
+          <option value="default">Nombre A-Z</option>
+          <option value="rating-desc">Mejor valorados</option>
+          <option value="sales-desc">Más ventas</option>
+          <option value="products-desc">Más productos</option>
+        </select>
+      </div>
+    </div>
+    <div id="resultsCount" class="results-info"></div>
+  </div>
+</section>
+
 
     <!-- Vendors Grid -->
     <section class="vendors-page">
