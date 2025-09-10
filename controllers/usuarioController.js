@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt'); // 🔹 Para seguridad en contraseñas
+const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
+const nodemailer = require('nodemailer');
 
 const registrarUsuario = async (req, res) => {
     try {
@@ -9,17 +10,14 @@ const registrarUsuario = async (req, res) => {
             return res.status(400).json({ error: "Faltan datos obligatorios" });
         }
 
-        // Verificar si el usuario ya existe
         const usuarioExistente = await Usuario.findOne({ where: { email } });
         if (usuarioExistente) {
             return res.status(409).json({ error: "El correo ya está registrado" });
         }
 
-        // 🔹 Encriptar contraseña antes de almacenarla
         const salt = await bcrypt.genSalt(10);
         const passwordHash = await bcrypt.hash(password, salt);
 
-        // 🔹 Registrar usuario en la base de datos
         const nuevoUsuario = await Usuario.create({ username, email, password: passwordHash });
         
         res.status(201).json({ mensaje: "✅ Usuario registrado exitosamente", usuario: nuevoUsuario });
@@ -41,7 +39,7 @@ const obtenerUsuarios = async (req, res) => {
 
         res.json(usuarios);
     } catch (error) {
-        console.trace('❌ Error al obtener usuarios:', error); // 🔹 Mejor diagnóstico
+        console.trace('❌ Error al obtener usuarios:', error);
         res.status(500).json({ error: 'Error al obtener usuarios', detalle: error.message });
     }
 };
@@ -63,4 +61,43 @@ const eliminarUsuario = async (req, res) => {
     }
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario, eliminarUsuario };
+// 🔐 Recuperar contraseña
+const recuperarPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        const usuario = await Usuario.findOne({ where: { email } });
+        if (!usuario) {
+            return res.status(404).json({ error: "No se encontró un usuario con ese correo" });
+        }
+
+        // Configurar transporte de correo
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "tucorreo@gmail.com",
+                pass: "tucontraseña" // ⚠️ Usar variables de entorno en producción
+            }
+        });
+
+        const mailOptions = {
+            from: "Beauty Moon <tucorreo@gmail.com>",
+            to: email,
+            subject: "Recuperación de contraseña",
+            text: `Hola ${usuario.username},\n\nRecibimos una solicitud para recuperar tu contraseña.\n\nPor seguridad, no enviamos contraseñas directamente. Si querés restablecerla, respondé a este correo o contactanos.\n\nGracias por usar Beauty Moon 💫`
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ mensaje: "📧 Correo de recuperación enviado con éxito" });
+    } catch (error) {
+        console.error("❌ Error al enviar correo de recuperación:", error);
+        res.status(500).json({ error: "Error al enviar el correo", detalle: error.message });
+    }
+};
+
+module.exports = {
+    obtenerUsuarios,
+    registrarUsuario,
+    eliminarUsuario,
+    recuperarPassword
+};

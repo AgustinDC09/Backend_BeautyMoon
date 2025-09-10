@@ -9,6 +9,7 @@ btnRegistrarse.addEventListener("click", () => contenedor.classList.add("toggle"
 // Conexión al backend
 document.addEventListener("DOMContentLoaded", () => {
     const formRegistro = document.querySelector(".registrarse");
+    const recuperarLink = document.getElementById("recuperar-password");
 
     formRegistro.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -40,5 +41,26 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error("❌ Error en la solicitud:", error);
         }
+    });
+
+    recuperarLink.addEventListener("click", () => {
+        const email = prompt("Ingrese su correo electrónico para recuperar la contraseña:");
+        if (!email) return;
+
+        const BASE_URL = "https://backend-beautymoon.onrender.com";
+
+        fetch(`${BASE_URL}/usuarios/recuperar`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("No se pudo enviar el correo de recuperación.");
+            alert("📧 Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña.");
+        })
+        .catch(error => {
+            console.error("❌ Error al recuperar contraseña:", error);
+            alert("Hubo un problema al intentar recuperar la contraseña.");
+        });
     });
 });
