@@ -179,16 +179,16 @@ function generateStars(rating) {
   let starsHTML = ""
 
   for (let i = 0; i < fullStars; i++) {
-    starsHTML += '<i class="fas fa-star star"></i>'
+    starsHTML += '<img src="public/star.png" alt="Estrella" class="star-icon" />'
   }
 
   if (hasHalfStar) {
-    starsHTML += '<i class="fas fa-star-half-alt star"></i>'
+    starsHTML += '<img src="public/star.png" alt="Estrella" class="star-icon" />'
   }
 
   const emptyStars = 5 - Math.ceil(rating)
   for (let i = 0; i < emptyStars; i++) {
-    starsHTML += '<i class="far fa-star star"></i>'
+    starsHTML += '<img src="public/star.png" alt="Estrella" class="star-icon" />'
   }
 
   return starsHTML
@@ -201,9 +201,9 @@ function createVendorCard(vendor) {
             <div class="vendor-header">
                 <img src="${vendor.avatar}" alt="${vendor.name}" class="vendor-avatar">
                 <div class="vendor-info">
-                    <h3>${vendor.name} ${vendor.verified ? '<span class="verified-badge"><i class="fas fa-check"></i> Verificado</span>' : ""}</h3>
+                    <h3>${vendor.name} ${vendor.verified ? '<span class="verified-badge"><img src="public/check.png" alt="Verificado" class="icon-img" /></i> Verificado</span>' : ""}</h3>
                     <div class="vendor-location">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <img src="public/location.png" alt="Ubicación" class="icon-img" />
                         ${vendor.location}
                     </div>
                 </div>
@@ -242,9 +242,7 @@ function createProductCard(product) {
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}">
                 ${product.discount ? `<div class="discount-badge">-${product.discount}%</div>` : ""}
-                <button class="favorite-btn">
-                    <i class="far fa-heart"></i>
-                </button>
+                
             </div>
             <div class="product-content">
                 <div class="product-vendor">Por ${product.vendor}</div>
@@ -527,7 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const totalItems = carrito.reduce((sum, p) => sum + p.cantidad, 0);
-    const badge = document.querySelector('.fa-shopping-cart + .badge');
+    const badge = document.querySelector('.icon-img + .badge');
     if (badge) badge.textContent = totalItems;
   }
 
