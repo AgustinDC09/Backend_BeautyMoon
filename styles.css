@@ -125,8 +125,13 @@ h6 {
   font-size: 1.125rem;
 }
 
+.fas, .fa {
+  font-size: 1rem;
+}
+
 .btn-icon {
   display: flex;
+  font-size: 1rem;
   align-items: center;
   justify-content: center;
   width: 40px;
