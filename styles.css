@@ -129,6 +129,13 @@ h6 {
   font-size: 1rem;
 }
 
+.star-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+
 .btn-icon {
   display: flex;
   font-size: 1rem;
@@ -441,7 +448,9 @@ h6 {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 20%;
 }
+
 
 .vendor-card img {
   width: 100%;
