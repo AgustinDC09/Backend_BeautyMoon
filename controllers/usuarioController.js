@@ -71,29 +71,38 @@ const recuperarPassword = async (req, res) => {
             return res.status(404).json({ error: "No se encontró un usuario con ese correo" });
         }
 
-        // Configurar transporte de correo
+        // Configurar transporte con SendGrid
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            service: 'SendGrid',
             auth: {
-                user: "tucorreo@gmail.com",
-                pass: "tucontraseña" // ⚠️ Usar variables de entorno en producción
+                user: 'apikey',
+                pass: process.env.SENDGRID_API_KEY
             }
         });
 
         const mailOptions = {
-            from: "Beauty Moon <tucorreo@gmail.com>",
+            from: 'Beauty Moon <agustindiazcontreras4321@gmail.com>',
             to: email,
-            subject: "Recuperación de contraseña",
+            subject: 'Recuperación de contraseña',
             text: `Hola ${usuario.username},\n\nRecibimos una solicitud para recuperar tu contraseña.\n\nPor seguridad, no enviamos contraseñas directamente. Si querés restablecerla, respondé a este correo o contactanos.\n\nGracias por usar Beauty Moon 💫`
         };
 
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({ mensaje: "📧 Correo de recuperación enviado con éxito" });
+        // Enviar el correo
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log("📧 Correo enviado con SendGrid");
+            res.status(200).json({ mensaje: "Correo enviado con éxito" });
+        } catch (error) {
+            console.error("❌ Error al enviar correo:", error);
+            res.status(500).json({ error: "Error al enviar el correo", detalle: error.message });
+        }
+
     } catch (error) {
-        console.error("❌ Error al enviar correo de recuperación:", error);
-        res.status(500).json({ error: "Error al enviar el correo", detalle: error.message });
+        console.error("❌ Error general en recuperación:", error);
+        res.status(500).json({ error: "Error interno en recuperación", detalle: error.message });
     }
 };
+
 
 module.exports = {
     obtenerUsuarios,
