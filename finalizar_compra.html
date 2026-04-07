@@ -17,8 +17,14 @@
             <h1>FINALIZAR COMPRA</h1>
             <div class="contenido-pago">
                 <div class="formulario-pago">
+
                     <div class="bloque-seccion" id="seccion-datos-personales">
-                        <h2>1 - DATOS PERSONALES <img src="public/chevron-down.png" alt="Desplegar sección" class="icon-img" />
+                        <div class="encabezado-seccion">
+                            <h2>1 - DATOS PERSONALES</h2>
+                            <div class="barra-chevron">
+                                <i class="fas fa-chevron-down flecha-icono"></i>
+                            </div>
+                        </div>
                         <div class="contenido-colapsable activo">
                             <div class="grupo-formulario">
                                 <label for="email">Correo electrónico*</label>
@@ -49,7 +55,12 @@
                     </div>
 
                     <div class="bloque-seccion colapsado" id="seccion-envio-retiro">
-                        <h2>2 - ENVÍO O RETIRO <img src="public/chevron-down.png" alt="Desplegar sección" class="icon-img" />
+                        <div class="encabezado-seccion">
+                            <h2>2 - ENVÍO O RETIRO</h2>
+                            <div class="barra-chevron">
+                                <i class="fas fa-chevron-down flecha-icono"></i>
+                            </div>
+                        </div>
                         <div class="contenido-colapsable">
                             <div class="opciones-envio-retiro">
                                 <button class="boton-opcion-envio activo" id="btn-domicilio">Enviar a domicilio</button>
@@ -60,7 +71,6 @@
                                 <div class="sub-seccion">
                                     <h3>Método de entrega</h3>
                                 </div>
-
                                 <div class="sub-seccion">
                                     <div class="grupo-formulario">
                                         <label for="codigo-postal-domicilio">Código postal*</label>
@@ -84,7 +94,7 @@
                                                 <input type="text" id="piso-depto" name="piso-depto">
                                             </div>
                                             <div class="grupo-formulario mitad-ancho">
-                                                <label for="ciudad">Provincia *</label>
+                                                <label for="ciudad">Provincia*</label>
                                                 <select id="ciudad" name="ciudad" required>
                                                     <option value="Mendoza" selected>Mendoza</option>
                                                     <option value="San Luis">San Luis</option>
@@ -94,7 +104,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="sub-seccion">
                                     <h3>¿Quién recibe el pedido?</h3>
                                     <div class="grupo-formulario campos-direccion-ocultos">
@@ -121,7 +130,12 @@
                     </div>
 
                     <div class="bloque-seccion colapsado" id="seccion-pago">
-                        <h2>3 - PAGO <img src="public/chevron-down.png" alt="Desplegar sección" class="icon-img" />
+                        <div class="encabezado-seccion">
+                            <h2>3 - PAGO</h2>
+                            <div class="barra-chevron">
+                                <i class="fas fa-chevron-down flecha-icono"></i>
+                            </div>
+                        </div>
                         <div class="contenido-colapsable">
                             <button class="boton-giftcard">Utilizar GiftCard</button>
                             <div class="opciones-pago">
@@ -194,7 +208,6 @@
                                     <label for="dni-pago">DNI*</label>
                                     <input type="text" id="dni-pago" name="dni-pago" required>
                                 </div>
-
                                 <div class="grupo-formulario campo-solo-credito">
                                     <label for="cuotas-disponibles">Cuotas disponibles:</label>
                                     <select id="cuotas-disponibles" name="cuotas-disponibles">
@@ -207,14 +220,13 @@
                             <button type="submit" class="boton-finalizar">FINALIZAR COMPRA</button>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="resumen-compra">
                     <h2>Resumen de la compra</h2>
-                    <div class="resumen-productos">
-                    </div>
-                    <div class="detalles-precios">
-                    </div>
+                    <div class="resumen-productos"></div>
+                    <div class="detalles-precios"></div>
                     <div class="opciones-checkbox">
                         <label>
                             <input type="checkbox" required> Acepto los .<a href="#"> Términos y Condiciones</a>

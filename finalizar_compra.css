@@ -57,43 +57,53 @@ body {
     margin-bottom: 30px;
 }
 
-.bloque-seccion h2 {
-    font-size: 1.1em;
-    color: #555;
-    margin-bottom: 0;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    border-bottom: 1px solid #eee;
+/* --- Encabezado de sección con barra chevron --- */
+.encabezado-seccion {
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-bottom: 1px solid #eee;
 }
 
-.contenido-colapsable {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, padding 0.5s ease-out, border-bottom 0.5s ease-out;
-    padding-top: 0;
-    padding-bottom: 0;
+.encabezado-seccion h2 {
+    font-size: 1.1em;
+    color: #555;
+    margin: 0;
+    padding: 15px 0;
     border-bottom: none;
 }
 
-.contenido-colapsable.activo {
-    max-height: 1000px; 
-    padding-top: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #eee;
+.barra-chevron {
+    background-color: #e0e0e0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
 }
 
 .flecha-icono {
-    margin-left: 10px;
+    color: #888;
+    font-size: 1em;
     transition: transform 0.3s ease;
 }
 
-.bloque-seccion:not(.colapsado) h2 .flecha-icono,
-.contenido-colapsable.activo + h2 .flecha-icono { 
+.flecha-icono.fa-chevron-up {
     transform: rotate(180deg);
+}
+
+/* --- Colapsable --- */
+.contenido-colapsable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.contenido-colapsable.activo {
+    max-height: 1000px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .grupo-formulario {
@@ -150,7 +160,7 @@ body {
     background-color: #333;
 }
 
-/* Estilos para el resumen de compra */
+/* --- Resumen de compra --- */
 .resumen-compra h2 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -259,6 +269,7 @@ body {
     text-decoration: underline;
 }
 
+/* --- Envío / Retiro --- */
 .opciones-envio-retiro {
     display: flex;
     gap: 0;
@@ -306,36 +317,10 @@ body {
     font-weight: 600;
 }
 
-.direccion-actual {
-    display: flex;
-    align-items: center;
-    background-color: #f8f8f8;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-    color: #555;
-    font-size: 0.95em;
-}
-
-.direccion-actual .enlace-cambiar {
-    color: #666666;
-    text-decoration: none;
-    margin-left: 5px;
-}
-.direccion-actual .enlace-cambiar:hover {
-    text-decoration: underline;
-}
-
-/* Ocultar estos campos por defecto y mostrarlos con JS */
 .campos-direccion-ocultos,
 .seccion-retiro-punto,
 .mensaje-error-cp {
     display: none;
-}
-
-input:not(:placeholder-shown):valid, select:valid {
-    border-color: #ccc;
 }
 
 .mensaje-error {
@@ -344,6 +329,7 @@ input:not(:placeholder-shown):valid, select:valid {
     margin-top: 5px;
 }
 
+/* --- Pago --- */
 .boton-giftcard {
     background-color: #f0f0f0;
     color: #555;
@@ -412,25 +398,12 @@ input:not(:placeholder-shown):valid, select:valid {
 }
 
 .campos-formulario-pago {
-    display: block; 
+    display: block;
 }
 
 .campo-tarjeta-comun,
-.campo-solo-credito,
-.mercado-pago-fields { 
-    display: none; 
-}
-
-.logos-tarjetas {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.logos-tarjetas img {
-    height: 30px;
-    width: auto;
+.campo-solo-credito {
+    display: none;
 }
 
 .grupo-formulario select {
@@ -459,36 +432,37 @@ input:not(:placeholder-shown):valid, select:valid {
     text-align: left;
     margin-bottom: 5px;
 }
+
 .boton-finalizar {
     background-color: #000;
     color: white;
     border: none;
     padding: 15px 30px;
-    border-radius: 8px; /*esquinas redondeadas*/
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2em; /*tamaño de fuente grande*/
-    font-weight: 700; /*texto mas negrita*/
+    font-size: 1.2em;
+    font-weight: 700;
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: block;
     width: 100%;
-    margin-top: 30px; /*espacio encima del boton*/
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-    letter-spacing: 0.5px; /*espaciado entre letras*/
-    text-transform: uppercase; /*texto en mayusculas*/
+    margin-top: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .boton-finalizar:hover {
-    background-color: #333; /*oscuro al pasar el mouse*/
-    transform: translateY(-2px); /*efecto de elevacion al pasar el raton*/
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /*sombra mejorada al pasar el raton*/
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .boton-finalizar:active {
-    background-color: #555; /*mas oscuro al hacer clic*/
-    transform: translateY(0); /*vuelve a la posicion original*/
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /*sombra mas pequeña al estar activo*/
+    background-color: #555;
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 input.error, select.error {
-  border: 2px solid red;
+    border: 2px solid red;
 }
