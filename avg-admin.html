@@ -2,26 +2,86 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel Administrador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador – Beauty Moon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<h1>Panel de Administrador</h1>
-
-
-
-<!-- Crear nueva vendedora -->
-<h2>Crear Vendedora</h2>
-<input type="text" id="nombreVendedora" placeholder="Nombre">
-<input type="text" id="puestoVendedora" placeholder="Puesto">
-<input type="text" id="imagenVendedora" placeholder="URL de imagen">
-<input type="number" id="calificacionVendedora" placeholder="Calificación (1-5)" min="1" max="5">
-<input type="number" id="productosVendidos" placeholder="Productos vendidos" min="0">
-<button id="crearVendedora">Crear</button>
-
-
-<h2>Vendedoras Actuales</h2>
-<div id="listaVendedoras"></div>
+ 
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="header-brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </div>
+      <span class="brand-name">Beauty Moon</span>
+      <span class="header-divider">—</span>
+      <span class="header-subtitle">Panel de Administración</span>
+    </div>
+  </header>
+ 
+  <main class="admin-main">
+ 
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value" id="statCount">0</div>
+        <div class="stat-label">Vendedoras registradas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statRating">—</div>
+        <div class="stat-label">Calificación promedio</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statProducts">0</div>
+        <div class="stat-label">Productos vendidos (total)</div>
+      </div>
+    </div>
+ 
+    <!-- Formulario -->
+    <div class="panel-card">
+      <div class="panel-title">
+        <span class="dot"></span>
+        Agregar nueva vendedora
+      </div>
+      <div class="form-row">
+        <div class="form-col">
+          <label class="field-label">Nombre completo</label>
+          <input class="field-input" type="text" id="nombreVendedora" placeholder="Ej: María González">
+        </div>
+        <div class="form-col">
+          <label class="field-label">Puesto / Zona</label>
+          <input class="field-input" type="text" id="puestoVendedora" placeholder="Ej: Puesto 1">
+        </div>
+        <div class="form-col">
+          <label class="field-label">URL de imagen</label>
+          <input class="field-input" type="text" id="imagenVendedora" placeholder="https://...">
+        </div>
+        <div class="form-col form-col--sm">
+          <label class="field-label">Calificación</label>
+          <input class="field-input" type="number" id="calificacionVendedora" placeholder="1–5" min="1" max="5" step="1">
+        </div>
+        <div class="form-col">
+          <label class="field-label">Productos vendidos</label>
+          <input class="field-input" type="number" id="productosVendidos" placeholder="Ej: 120" min="0">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-crear" id="crearVendedora">+ Crear vendedora</button>
+      </div>
+    </div>
+ 
+    <!-- Lista de vendedoras (renderizada por admin.js) -->
+    <div class="panel-card">
+      <div class="panel-title">
+        <span class="dot"></span>
+        Vendedoras actuales
+      </div>
+      <div id="listaVendedoras"></div>
+    </div>
 
 <script src="admin.js"></script>
 

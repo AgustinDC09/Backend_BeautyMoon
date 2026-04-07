@@ -1,36 +1,318 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #ff6b35;
+  --primary-hover: #e55a2b;
+  --bg-page: #fef5f0;
+  --bg-card: #ffffff;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --border: #e2e8f0;
+  --input-bg: #2d3748;
+  --input-text: #ffffff;
+  --input-placeholder: #a0aec0;
+}
+
 body {
-  font-family: sans-serif;
-  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
 }
 
-input {
-  margin: 5px;
-  padding: 8px;
+/* ── Header ── */
+.admin-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 0.875rem 2rem;
 }
 
-button {
-  margin: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.card-vendedora {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
-.vendor-info h3 {
-  font-size: 1.25rem;
+
+.brand-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.brand-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.header-divider {
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.header-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ── Main ── */
+.admin-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Stats ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+}
+
+.stat-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ── Panel card ── */
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+
+.panel-title {
+  font-size: 1rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 4px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+/* ── Form ── */
+.form-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.form-col--sm {
+  flex: 0 0 90px;
+  min-width: 90px;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.field-input {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  width: 100%;
+  transition: box-shadow 0.15s;
+}
+
+.field-input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.field-input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.45);
+}
+
+.field-input[type="number"]::-webkit-inner-spin-button,
+.field-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-crear {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+}
+
+.btn-crear:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #fff5f0;
+}
+
+
+/* ── Cards de vendedoras (generadas por admin.js) ── */
+.card-vendedora {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  align-items: center;
+  padding: 0.875rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+  transition: background 0.1s;
+}
+
+.card-vendedora:last-child {
+  border-bottom: none;
+}
+
+.card-vendedora:hover {
+  background: #fafafa;
+}
+
+.vendor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vendor-info h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .vendor-location {
-  background-color: #f0f0f0;
-  color: #555;
-  padding: 4px 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Botones generados por admin.js */
+.card-vendedora button {
+  padding: 5px 14px;
   border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all 0.15s;
+  margin-right: 6px;
+}
+
+.card-vendedora button:first-of-type:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #fff5f0;
+}
+
+.card-vendedora button:last-of-type:hover {
+  border-color: #e53e3e;
+  color: #e53e3e;
+  background: #fff5f5;
+}
+
+/* ── Empty state ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  gap: 0.75rem;
+}
+
+.empty-icon {
+  width: 52px;
+  height: 52px;
+}
+
+.empty-state p {
   font-size: 0.9rem;
-  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .form-col--sm {
+    flex: 1;
+  }
+  .table-header,
+  .card-vendedora {
+    grid-template-columns: 1fr 1fr;
+  }
+  .table-header span:last-child,
+  .card-vendedora button {
+    grid-column: 1 / -1;
+  }
 }
