@@ -2,29 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel de Vendedor</title>
-  <link rel="stylesheet" href="admin.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Vendedor – Beauty Moon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendedor.css">
 </head>
 <body>
-  <h1>Panel de Vendedor</h1>
 
-  <!-- Formulario para agregar producto -->
-  <section class="form-section">
-    <h2>Agregar Producto</h2>
-    <input type="text" id="nombreProducto" placeholder="Nombre del producto">
-    <input type="text" id="categoriaProducto" placeholder="Categoría">
-    <input type="number" id="precioProducto" placeholder="Precio" min="0" step="0.01">
-    <input type="number" id="descuentoProducto" placeholder="Descuento (%)" min="0" max="100">
-    <input type="text" id="imagenProducto" placeholder="URL de imagen">
-    <input type="text" id="vendedorProducto" placeholder="Nombre del vendedor">
-    <button id="agregarProducto">Agregar Producto</button>
-  </section>
+  <header class="vendor-header">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </div>
+    <span class="brand-name">Beauty Moon</span>
+    <span class="header-divider">/</span>
+    <span class="header-subtitle">Panel de Vendedor</span>
+  </header>
 
-  <!-- Lista de productos actuales -->
-  <section>
-    <h2>Productos Actuales</h2>
-    <div id="listaProductos"></div>
-  </section>
+  <main class="vendor-main">
+
+    <div>
+      <span class="role-pill">
+        <span class="role-dot"></span>
+        Vendedor activo
+      </span>
+    </div>
+
+    <div class="panel-card">
+      <h2 class="panel-title">
+        <span class="dot"></span>
+        Agregar Producto
+      </h2>
+
+      <div class="form-grid">
+
+        <div>
+          <label class="field-label" for="nombreProducto">Nombre del producto</label>
+          <input class="field-input" type="text" id="nombreProducto" placeholder="Ej: Labial Rojo">
+        </div>
+
+        <div>
+          <label class="field-label" for="categoriaProducto">Categoría</label>
+          <input class="field-input" type="text" id="categoriaProducto" placeholder="Ej: Maquillaje">
+        </div>
+
+        <div class="span-2">
+          <div class="price-row">
+            <div class="field-wrap">
+              <label class="field-label" for="precioProducto">Precio ($)</label>
+              <input class="field-input" type="number" id="precioProducto" placeholder="0.00" min="0" step="0.01">
+            </div>
+            <div class="field-wrap field-wrap--sm">
+              <label class="field-label" for="descuentoProducto">Descuento (%)</label>
+              <input class="field-input" type="number" id="descuentoProducto" placeholder="0" min="0" max="100">
+            </div>
+          </div>
+        </div>
+
+        <div class="span-2">
+          <label class="field-label" for="imagenProducto">URL de imagen</label>
+          <input class="field-input" type="text" id="imagenProducto" placeholder="https://...">
+        </div>
+
+        <div class="span-2">
+          <label class="field-label" for="vendedorProducto">Nombre del vendedor</label>
+          <input class="field-input" type="text" id="vendedorProducto" placeholder="Tu nombre">
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-add" id="agregarProducto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Agregar producto
+        </button>
+      </div>
+    </div>
+
+    <!--Lista de productos-->
+    <div class="panel-card">
+      <h2 class="panel-title">
+        <span class="dot"></span>
+        Mis Productos
+      </h2>
+      <div id="listaProductos"></div>
+    </div>
+
+  </main>
 
   <script src="vendedor.js"></script>
 </body>

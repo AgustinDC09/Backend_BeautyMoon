@@ -1,0 +1,390 @@
+/* ═══════════════════════════════════════════════
+   vendedor.css — Panel de Vendedor · Beauty Moon
+   Autónomo: no depende de admin.css ni styles.css
+   ═══════════════════════════════════════════════ */
+
+/* ── Variables propias ── */
+:root {
+  --primary:        #ff6b35;
+  --primary-hover:  #e55a2b;
+  --primary-soft:   #fff5f0;
+  --bg-page:        #fef5f0;
+  --bg-card:        #ffffff;
+  --text-primary:   #2d3748;
+  --text-secondary: #718096;
+  --border:         #e2e8f0;
+  --input-bg:       #2d3748;
+  --input-text:     #ffffff;
+  --input-placeholder: #a0aec0;
+  --success:        #48bb78;
+  --danger:         #e53e3e;
+  --shadow-sm:      0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:      0 4px 16px rgba(0,0,0,.08);
+  --radius-card:    14px;
+}
+
+/* ── Reset base ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════ */
+.vendor-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: .875rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.brand-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.header-divider {
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.header-subtitle {
+  font-size: .95rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════
+   LAYOUT PRINCIPAL
+   ══════════════════════════════════════ */
+.vendor-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ══════════════════════════════════════
+   PILL DE ROL
+   ══════════════════════════════════════ */
+.role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: 1px solid rgba(255, 107, 53, .25);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+
+.role-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .4; }
+}
+
+/* ══════════════════════════════════════
+   PANEL CARD
+   ══════════════════════════════════════ */
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   FORMULARIO
+   ══════════════════════════════════════ */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .875rem;
+}
+
+.form-grid .span-2 {
+  grid-column: 1 / -1;
+}
+
+.price-row {
+  display: flex;
+  gap: .875rem;
+}
+
+.field-wrap     { flex: 1; }
+.field-wrap--sm { flex: 0 0 120px; }
+
+.field-label {
+  display: block;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: .875rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: box-shadow .15s;
+}
+
+.field-input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.field-input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, .45);
+}
+
+.field-input[type="number"]::-webkit-inner-spin-button,
+.field-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
+}
+
+/* ══════════════════════════════════════
+   BOTÓN AGREGAR
+   ══════════════════════════════════════ */
+.btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: .875rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+
+.btn-add:hover  { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-add:active { transform: translateY(0); }
+
+.btn-add svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ══════════════════════════════════════
+   LISTA DE PRODUCTOS (generada por JS)
+   ══════════════════════════════════════ */
+#listaProductos {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.card-producto {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .15s, transform .15s;
+}
+
+.card-producto:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Thumbnail de imagen */
+.card-producto img {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* Texto generado por renderProductos() */
+.card-producto strong {
+  font-size: .9rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.card-producto em,
+.card-producto small {
+  display: block;
+  font-style: normal;
+  font-size: .78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Tags de categoría / precio / descuento / vendedor */
+.prod-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: .7rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.tag--cat    { background: #edf2ff; color: #4c6ef5; }
+.tag--price  { background: var(--primary-soft); color: var(--primary); font-weight: 700; }
+.tag--disc   { background: #f0fff4; color: var(--success); }
+.tag--seller { background: #faf5ff; color: #805ad5; }
+
+/* Acciones */
+.card-acciones {
+  display: flex;
+  gap: .5rem;
+  flex-shrink: 0;
+}
+
+/* Botones generados por el JS */
+.card-producto button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: .8rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.card-producto button:first-of-type:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.card-producto button:last-of-type:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: #fff5f5;
+}
+
+/* ══════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  gap: .75rem;
+}
+
+.empty-state svg {
+  width: 52px;
+  height: 52px;
+  opacity: .35;
+}
+
+.empty-state p {
+  font-size: .9rem;
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+@media (max-width: 600px) {
+  .form-grid           { grid-template-columns: 1fr; }
+  .form-grid .span-2   { grid-column: 1; }
+  .price-row           { flex-direction: column; }
+  .field-wrap--sm      { flex: 1; }
+  .card-producto       { grid-template-columns: 48px 1fr; }
+  .card-acciones       { grid-column: 1 / -1; justify-content: flex-end; }
+}
